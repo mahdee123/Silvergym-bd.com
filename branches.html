@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Branches — Silver Gym</title>
+  <meta name="description" content="Find your nearest Silver Gym branch in Dhaka. Rayarbag, South Banasree, and Rampura locations with full details.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css?v=4">
+</head>
+<body>
+
+  <!-- ========================================
+       NAVBAR
+       ======================================== -->
+  <nav class="navbar">
+    <div class="nav-block">
+      <a href="index.html" class="nav-logo">SILVER <span>GYM</span></a>
+
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#about" class="nav-link">About</a>
+        <a href="index.html#services" class="nav-link">Services</a>
+        <a href="index.html#membership" class="nav-link">Membership</a>
+        <a href="branches.html" class="nav-link active">Branches</a>
+        <a href="index.html#trainers" class="nav-link">Trainers</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+
+      <a href="index.html#membership" class="link-button-nav nav-cta-desktop">
+        <span class="button-text">Become a Member</span>
+        <span class="button-hover"></span>
+      </a>
+
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#membership">Membership</a>
+    <a href="branches.html">Branches</a>
+    <a href="index.html#trainers">Trainers</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <div class="mobile-nav-buttons">
+      <a href="tel:01614484411" class="link-button red">
+        <span class="button-text">Call Now</span>
+        <span class="button-hover"></span>
+      </a>
+      <a href="index.html#membership" class="link-button">
+        <span class="button-text">Join Now</span>
+        <span class="button-hover"></span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================
+       PAGE HERO
+       ======================================== -->
+  <section class="page-hero-section">
+    <div class="page-hero">
+      <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80');"></div>
+      <div class="page-hero-overlay"></div>
+      <div class="page-hero-content">
+        <span class="subheading" style="color: var(--accent);">Locations</span>
+        <h1>FIND YOUR NEAREST SILVER GYM</h1>
+        <p>We have 3 branches across Dhaka. Visit the one closest to you and start your fitness journey today.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       LAYOUT 2: EXECUTIVE DOSSIER CARDS & COMPARISON
+       ======================================== -->
+  <section class="branches-l2-container">
+
+    <!-- 3 Dossier Cards -->
+    <div class="l2-grid">
+      <!-- Rayarbag Card -->
+      <div class="l2-card" id="rayarbag">
+        <div class="l2-card-image" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80');">
+          <div class="l2-card-image-overlay"></div>
+          <span class="l2-card-badge">BRANCH 01</span>
+        </div>
+        <div class="l2-card-body">
+          <div>
+            <h3>RAYARBAG</h3>
+            <p>Mannan Tower, Holding No: 3553, Madinabag, Kadamtali, Dhaka</p>
+            <div class="l2-timing-mini">
+              <div><span>Gents:</span> <strong>7:30 AM — 10:30 PM</strong></div>
+              <div><span>Ladies:</span> <strong>9:00 AM — 10:00 PM</strong></div>
+            </div>
+          </div>
+          <div class="l2-actions">
+            <a href="tel:01614484411" class="l2-btn-call">📞 Call Branch</a>
+            <a href="gallery.html?branch=rayarbag" class="l2-btn-gallery">Photos ↗</a>
+            <a href="https://maps.google.com/?q=Mannan+Tower+Kadamtali+Dhaka" target="_blank" class="l2-btn-gallery">Map</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- South Banasree Card -->
+      <div class="l2-card" id="south-banasree">
+        <div class="l2-card-image" style="background-image: url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=800&q=80');">
+          <div class="l2-card-image-overlay"></div>
+          <span class="l2-card-badge">BRANCH 02</span>
+        </div>
+        <div class="l2-card-body">
+          <div>
+            <h3>SOUTH BANASREE</h3>
+            <p>House #34/36, Block #K, Road #13/1, Khilgaon, Dhaka-1219</p>
+            <div class="l2-timing-mini">
+              <div><span>Gents:</span> <strong>7:30 AM — 10:30 PM</strong></div>
+              <div><span>Ladies:</span> <strong>9:00 AM — 10:00 PM</strong></div>
+            </div>
+          </div>
+          <div class="l2-actions">
+            <a href="tel:+8801706205822" class="l2-btn-call">📞 Call Branch</a>
+            <a href="gallery.html?branch=south-banasree" class="l2-btn-gallery">Photos ↗</a>
+            <a href="https://maps.google.com/?q=Khilgaon+Dhaka" target="_blank" class="l2-btn-gallery">Map</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rampura Card -->
+      <div class="l2-card" id="rampura">
+        <div class="l2-card-image" style="background-image: url('https://images.unsplash.com/photo-1596357395217-80de13130e92?w=800&q=80');">
+          <div class="l2-card-image-overlay"></div>
+          <span class="l2-card-badge">BRANCH 03</span>
+        </div>
+        <div class="l2-card-body">
+          <div>
+            <h3>RAMPURA</h3>
+            <p>House #7-8, Block #A, 7th Floor, Main Road Banasree, Dhaka</p>
+            <div class="l2-timing-mini">
+              <div><span>Gents:</span> <strong>7:30 AM — 10:30 PM</strong></div>
+              <div><span>Ladies:</span> <strong>9:00 AM — 10:00 PM</strong></div>
+            </div>
+          </div>
+          <div class="l2-actions">
+            <a href="tel:+8801705360925" class="l2-btn-call">📞 Call Branch</a>
+            <a href="gallery.html?branch=rampura" class="l2-btn-gallery">Photos ↗</a>
+            <a href="https://maps.google.com/?q=Rampura+Dhaka" target="_blank" class="l2-btn-gallery">Map</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison Matrix Table -->
+    <div class="l2-comp-table">
+      <h3>BRANCH AMENITIES & HIGHLIGHTS COMPARISON</h3>
+      <div class="l2-table-wrapper">
+        <table class="l2-table">
+          <thead>
+            <tr>
+              <th>FEATURE / FACILITY</th>
+              <th>RAYARBAG</th>
+              <th>SOUTH BANASREE</th>
+              <th>RAMPURA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Location Zone</strong></td>
+              <td>Kadamtali / Madinabag</td>
+              <td>Khilgaon / Dakhin Banasree</td>
+              <td>Main Road / Banasree Rampura</td>
+            </tr>
+            <tr>
+              <td><strong>Floor & Ambience</strong></td>
+              <td>Spacious Tower Floor</td>
+              <td>Dedicated Multi-Room Space</td>
+              <td>7th Floor Skyline View</td>
+            </tr>
+            <tr>
+              <td><strong>Separate Shifts (Gents & Ladies)</strong></td>
+              <td><span style="color:#4ade80;">✓ Yes (Daily)</span></td>
+              <td><span style="color:#4ade80;">✓ Yes (Daily)</span></td>
+              <td><span style="color:#4ade80;">✓ Yes (Daily)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Cardio & Endurance Area</strong></td>
+              <td>Full Cardio Line</td>
+              <td>Advanced Treadmills & Cycles</td>
+              <td>High-Ventilation Cardio Deck</td>
+            </tr>
+            <tr>
+              <td><strong>Heavy Free Weights & Power Racks</strong></td>
+              <td><span style="color:#4ade80;">✓ Available</span></td>
+              <td><span style="color:#4ade80;">✓ Available</span></td>
+              <td><span style="color:#4ade80;">✓ Heavy Powerlifting Zone</span></td>
+            </tr>
+            <tr>
+              <td><strong>Air Conditioning & Lockers</strong></td>
+              <td><span style="color:#4ade80;">✓ Yes</span></td>
+              <td><span style="color:#4ade80;">✓ Yes</span></td>
+              <td><span style="color:#4ade80;">✓ Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>Direct Contact Hotline</strong></td>
+              <td><a href="tel:01614484411" style="color:var(--accent); text-decoration:none;">01614-484411</a></td>
+              <td><a href="tel:+8801706205822" style="color:var(--accent); text-decoration:none;">+880 1706-205822</a></td>
+              <td><a href="tel:+8801705360925" style="color:var(--accent); text-decoration:none;">+880 1705-360925</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================================
+       FOOTER (OPTION C — MULTI-BRANCH CARDS)
+       ======================================== -->
+  <footer class="section-footer section">
+    <div class="footer-branch-cards">
+
+      <div class="footer-cards-header">
+        <span class="subheading">Locations in Dhaka</span>
+        <h3>FIND YOUR NEAREST SILVER GYM</h3>
+      </div>
+
+      <!-- 3 Branch Cards -->
+      <div class="footer-cards-grid">
+        <!-- Rayarbag -->
+        <div class="footer-card">
+          <div>
+            <div class="footer-card-top">
+              <h4>RAYARBAG</h4>
+              <span class="footer-card-status"><span class="dot"></span> Open Today</span>
+            </div>
+            <div class="footer-card-addr">
+              Mannan Tower, Holding No: 3553, Madinabag, Kadamtali, Dhaka
+            </div>
+          </div>
+          <div class="footer-card-actions">
+            <a href="tel:01614484411" class="footer-btn-call">📞 01614-484411</a>
+            <a href="https://maps.google.com/?q=Mannan+Tower+Holding+No+3553+Madinabag+Kadamtali+Dhaka" target="_blank" class="footer-btn-map">Map ↗</a>
+          </div>
+        </div>
+
+        <!-- South Banasree -->
+        <div class="footer-card">
+          <div>
+            <div class="footer-card-top">
+              <h4>SOUTH BANASREE</h4>
+              <span class="footer-card-status"><span class="dot"></span> Open Today</span>
+            </div>
+            <div class="footer-card-addr">
+              House #34/36, Block #K, Road #13/1, Khilgaon, Dhaka-1219
+            </div>
+          </div>
+          <div class="footer-card-actions">
+            <a href="tel:+8801706205822" class="footer-btn-call">📞 01706-205822</a>
+            <a href="https://maps.google.com/?q=House+34+36+Block+K+Road+13+1+Dakhin+Banasree+Khilgaon+Dhaka+1219" target="_blank" class="footer-btn-map">Map ↗</a>
+          </div>
+        </div>
+
+        <!-- Rampura -->
+        <div class="footer-card">
+          <div>
+            <div class="footer-card-top">
+              <h4>RAMPURA</h4>
+              <span class="footer-card-status"><span class="dot"></span> Open Today</span>
+            </div>
+            <div class="footer-card-addr">
+              House #7-8, Block #A, 7th Floor, Main Road Banasree, Dhaka
+            </div>
+          </div>
+          <div class="footer-card-actions">
+            <a href="tel:+8801705360925" class="footer-btn-call">📞 01705-360925</a>
+            <a href="https://maps.google.com/?q=House+7+8+Block+A+Main+Road+Banasree+Rampura+Dhaka+1219" target="_blank" class="footer-btn-map">Map ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Bottom Strip -->
+      <div class="footer-strip">
+        <div class="footer-strip-left">
+          <span class="footer-strip-logo">SILVER <span class="accent-text">GYM</span></span>
+          <div class="footer-strip-links">
+            <a href="index.html#membership">Membership</a>
+            <a href="branches.html">Branches</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="https://wa.me/8801614484411" target="_blank">WhatsApp Support</a>
+          </div>
+        </div>
+        <div class="footer-strip-copy">
+          &copy; 2026 Silver Gym. All rights reserved.
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/8801614484411" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>

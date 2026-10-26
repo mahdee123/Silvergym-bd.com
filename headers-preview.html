@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2-Line Middle-Aligned Section Headers Preview — Silver Gym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=4">
+  <style>
+    /* Top Sticky Navigation Control Bar */
+    .preview-header-bar {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: #101218;
+      border-bottom: 2px solid var(--accent);
+      padding: 1rem 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .preview-brand-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .preview-tag {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    .preview-brand-info h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.05rem;
+      color: #fff;
+      margin: 0;
+    }
+    .preview-mode-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .mode-tab-btn {
+      background: #1b1e28;
+      color: #cecbc1;
+      border: 1px solid #303646;
+      padding: 0.6rem 1.15rem;
+      border-radius: 6px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .mode-tab-btn:hover {
+      background: #272c3d;
+      color: #fff;
+    }
+    .mode-tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 4px 15px rgba(211, 60, 46, 0.4);
+    }
+
+    /* Container */
+    .showcase-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 6rem;
+    }
+    .preview-tab-pane {
+      display: none;
+    }
+    .preview-tab-pane.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Meta Overview Box */
+    .meta-overview-box {
+      background: #fff;
+      border: 1px solid #dcdad0;
+      border-radius: 14px;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+    .meta-overview-box h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.35rem;
+      color: var(--heading);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .meta-overview-box p {
+      color: var(--paragraphs);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+    .meta-highlights-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .m-pill {
+      background: #eeebe3;
+      color: #2b2e3b;
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+    .m-pill.red {
+      background: rgba(211, 60, 46, 0.12);
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .m-pill.green {
+      background: rgba(34, 197, 94, 0.12);
+      color: #15803d;
+      font-weight: 700;
+    }
+
+    /* Comparison Grid & Cards */
+    .comparison-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+    }
+    .comparison-card {
+      background: #fff;
+      border: 1px solid #d9d6cb;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.05);
+      transition: box-shadow 0.25s ease;
+    }
+    .comparison-card:hover {
+      box-shadow: 0 12px 32px rgba(0,0,0,0.09);
+    }
+    .card-top-bar {
+      background: #14161f;
+      color: #fff;
+      padding: 1rem 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .card-sec-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+    }
+    .card-sec-badge span {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.72rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* Split Columns in Comparison */
+    .card-split-view {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 220px;
+    }
+    .split-col {
+      padding: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .split-col.before {
+      background: #fbf9f5;
+      border-right: 1px dashed #d6d3c7;
+    }
+    .split-col.after {
+      background: #ffffff;
+    }
+    .col-status-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.25rem;
+      width: fit-content;
+      padding: 0.25rem 0.7rem;
+      border-radius: 4px;
+    }
+    .col-status-tag.bad {
+      background: rgba(239, 68, 68, 0.12);
+      color: #dc2626;
+      border: 1px solid rgba(239, 68, 68, 0.25);
+    }
+    .col-status-tag.good {
+      background: rgba(34, 197, 94, 0.12);
+      color: #16a34a;
+      border: 1px solid rgba(34, 197, 94, 0.25);
+    }
+
+    /* Header Rendering Box inside Split */
+    .header-render-box {
+      background: #111318;
+      border-radius: 12px;
+      padding: 2.2rem 1.8rem;
+      color: #fff;
+      margin-bottom: 1.25rem;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    .header-render-box.light-theme {
+      background: var(--light);
+      color: var(--heading);
+      border: 1px solid var(--border);
+    }
+    .header-render-box.align-left {
+      text-align: left;
+      align-items: flex-start;
+    }
+    .header-render-box.align-center {
+      text-align: center;
+      align-items: center;
+    }
+    .header-render-box .subheading {
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+    .header-render-box h2,
+    .header-render-box h3 {
+      margin: 0;
+      line-height: 1.15;
+      font-family: 'Unbounded', sans-serif;
+    }
+    .header-render-box .line-marker-box {
+      display: block;
+      margin-top: 0.4rem;
+    }
+
+    /* Line Breakdown Visualizer */
+    .line-breakdown-list {
+      background: #f0eee6;
+      border-radius: 8px;
+      padding: 0.85rem 1.1rem;
+      font-size: 0.85rem;
+      color: #4b4e5b;
+    }
+    .line-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+      line-height: 1.4;
+    }
+    .line-item:last-child {
+      margin-bottom: 0;
+    }
+    .line-num {
+      font-family: monospace;
+      font-weight: 700;
+      color: #8b8980;
+      min-width: 55px;
+    }
+    .line-item.accent .line-num {
+      color: var(--accent);
+    }
+    .line-item.accent {
+      color: #111;
+      font-weight: 600;
+    }
+
+    /* Full Live Preview Pane */
+    .full-live-frame {
+      border: 2px solid #232734;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--background);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    }
+    .live-frame-banner {
+      background: #111318;
+      color: #fff;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #232734;
+      font-size: 0.88rem;
+    }
+
+    /* Simulated Sections */
+    .sim-sec {
+      padding: 3.5rem 2rem;
+      max-width: 1240px;
+      margin: 0 auto 2.5rem;
+    }
+    .sim-sec.dark {
+      background: #111318;
+      color: #fff;
+      border-radius: 16px;
+    }
+    .sim-sec.light-box {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #dcdad0;
+    }
+    .sim-header {
+      text-align: center;
+      margin-bottom: 2.75rem;
+    }
+    .sim-header .subheading {
+      display: inline-block;
+      margin-bottom: 0.4rem;
+    }
+    .sim-header h2,
+    .sim-header h3 {
+      font-family: 'Unbounded', sans-serif;
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    @media (max-width: 991px) {
+      .card-split-view {
+        grid-template-columns: 1fr;
+      }
+      .split-col.before {
+        border-right: none;
+        border-bottom: 1px dashed #d6d3c7;
+      }
+    }
+  </style>
+</head>
+<body style="background-color: var(--background); margin: 0; padding: 0;">
+
+  <!-- Controller Sticky Top Bar -->
+  <header class="preview-header-bar">
+    <div class="preview-brand-info">
+      <span class="preview-tag">Updated Layout</span>
+      <h2>Silver Gym — 2-Line Middle-Aligned Headers Preview</h2>
+    </div>
+    <div class="preview-mode-tabs">
+      <button class="mode-tab-btn active" onclick="switchPreviewMode('tab-comparison')">
+        📊 Side-by-Side (Before vs After)
+      </button>
+      <button class="mode-tab-btn" onclick="switchPreviewMode('tab-live-after')">
+        ✨ Full Homepage (Middle-Aligned 2-Line Titles)
+      </button>
+    </div>
+  </header>
+
+  <main class="showcase-container">
+
+    <!-- =========================================================================
+         TAB 1: SIDE-BY-SIDE VISUAL COMPARISON
+         ========================================================================= -->
+    <div id="tab-comparison" class="preview-tab-pane active">
+
+      <!-- Meta Overview Box -->
+      <div class="meta-overview-box">
+        <h3>
+          🎯 আপনার ফিডব্যাক অনুযায়ী ২-লাইন ও মিডল-অ্যালাইন রূপান্তর
+          <span class="m-pill red">Before: 3-4 Lines / Left-Aligned</span>
+          <span class="m-pill green">After: Exact 2 Lines / Middle-Aligned</span>
+        </h3>
+        <p>
+          <strong>আপনার নির্দেশনা অনুযায়ী দুটি বিষয় ঠিক করা হয়েছে:</strong><br>
+          ১. <strong>সেকশন টাইটেল নিজেই ঠিক ২ লাইনে (Exact 2 Lines):</strong> কোনো শর্ট ১-লাইনার নয়, বরং পুরো অর্থবহ টাইটেলটি ব্যালান্সডভাবে ঠিক ২ লাইনে বিভক্ত করা হয়েছে (যেমন: <code>EVERYTHING YOU NEED &lt;br&gt; TO REACH YOUR FITNESS GOALS</code>)।<br>
+          ২. <strong>মিডল-অ্যালাইন (Middle/Center-Aligned):</strong> পূর্বে About Us, Our Story, Admission সহ যেসব সেকশনের টাইটেল লেফট-অ্যালাইন ছিল, সেগুলোকে নিচে থাকা কার্ডের সাথে সামঞ্জস্য রেখে সুন্দরভাবে সেন্ট্রাল/মিডল-অ্যালাইন করা হয়েছে।
+        </p>
+        <div class="meta-highlights-pills">
+          <span class="m-pill green">✓ সেকশন টাইটেলটি নিজেই ঠিক ২ লাইনে থাকবে</span>
+          <span class="m-pill green">✓ কার্ডের সাথে মিলিয়ে প্রতিটি টাইটেল মিডল-অ্যালাইন (Centered)</span>
+          <span class="m-pill green">✓ ৩ বা ৪ লাইনে অহেতুক র‍্যাপিং পুরোপুরি বন্ধ</span>
+          <span class="m-pill">✓ ডেস্কটপ ও মোবাইলে ১০০% প্রিমিয়াম সিমেট্রি</span>
+        </div>
+      </div>
+
+      <div class="comparison-grid">
+
+        <!-- 1. SERVICES SECTION -->
+        <div class="comparison-card">
+          <div class="card-top-bar">
+            <div class="card-sec-badge">
+              <span>Section 01</span> Services Header (#services)
+            </div>
+            <span style="font-size:0.85rem; color:#cecbc1;">What We Offer</span>
+          </div>
+          <div class="card-split-view">
+            <!-- Before -->
+            <div class="split-col before">
+              <div>
+                <span class="col-status-tag bad">🔴 Before (3-4 Lines Uncontrolled Wrap)</span>
+                <div class="header-render-box light-theme align-center">
+                  <span class="subheading">What We Offer</span>
+                  <h2 style="font-size: 1.85rem; margin-top: 0.35rem;">EVERYTHING YOU NEED TO REACH YOUR FITNESS GOALS</h2>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item"><span class="line-num">Line 1:</span> What We Offer (Subheading)</div>
+                <div class="line-item"><span class="line-num">Line 2:</span> EVERYTHING YOU NEED TO REACH</div>
+                <div class="line-item"><span class="line-num">Line 3:</span> YOUR FITNESS GOALS (3 lines total)</div>
+                <div class="line-item accent" style="color:#dc2626;"><span class="line-num">Problem:</span> টাইটেলটি লম্বা হওয়ায় এলোমেলোভাবে ৩ লাইনে ভেঙে যায়।</div>
+              </div>
+            </div>
+            <!-- After -->
+            <div class="split-col after">
+              <div>
+                <span class="col-status-tag good">🟢 After (Exact 2 Lines + Middle-Aligned)</span>
+                <div class="header-render-box light-theme align-center">
+                  <span class="subheading">What We Offer</span>
+                  <h2 style="font-size: 1.85rem; margin-top: 0.35rem;">EVERYTHING YOU NEED<br>TO REACH YOUR FITNESS GOALS</h2>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item accent"><span class="line-num">Title Line 1:</span> EVERYTHING YOU NEED</div>
+                <div class="line-item accent"><span class="line-num">Title Line 2:</span> TO REACH YOUR FITNESS GOALS</div>
+                <div class="line-item" style="color:#16a34a;"><span class="line-num">Alignment:</span> মিডল-অ্যালাইন (Middle/Center-Aligned) ও ব্যালান্সড ২-লাইন টাইটেল।</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. ABOUT US (PREVIOUSLY LEFT-ALIGNED!) -->
+        <div class="comparison-card">
+          <div class="card-top-bar">
+            <div class="card-sec-badge">
+              <span>Section 02</span> About Us Header (#about)
+            </div>
+            <span style="font-size:0.85rem; color:#ffb74d; font-weight:700;">Left-Aligned &rarr; Changed to Middle-Aligned</span>
+          </div>
+          <div class="card-split-view">
+            <div class="split-col before">
+              <div>
+                <span class="col-status-tag bad">🔴 Before (Left-Aligned & 3 Lines)</span>
+                <div class="header-render-box light-theme align-left">
+                  <span class="subheading">About Us</span>
+                  <h2 style="font-size: 1.75rem; margin-top: 0.35rem;">YOUR FITNESS JOURNEY STARTS HERE</h2>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item"><span class="line-num">Align:</span> Left Aligned (বাম পাশে সরানো)</div>
+                <div class="line-item"><span class="line-num">Lines:</span> ৩ লাইনে টেক্সট র‍্যাপ হচ্ছিল</div>
+              </div>
+            </div>
+            <div class="split-col after">
+              <div>
+                <span class="col-status-tag good">🟢 After (Exact 2 Lines + Middle-Aligned)</span>
+                <div class="header-render-box light-theme align-center">
+                  <span class="subheading">About Us</span>
+                  <h2 style="font-size: 1.85rem; margin-top: 0.35rem;">YOUR FITNESS JOURNEY<br>STARTS RIGHT HERE</h2>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item accent"><span class="line-num">Title Line 1:</span> YOUR FITNESS JOURNEY</div>
+                <div class="line-item accent"><span class="line-num">Title Line 2:</span> STARTS RIGHT HERE</div>
+                <div class="line-item" style="color:#16a34a;"><span class="line-num">Alignment:</span> সম্পূর্ণ মিডল-অ্যালাইন (Center-Aligned) করা হয়েছে।</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. OUR STORY (PREVIOUSLY LEFT-ALIGNED!) -->
+        <div class="comparison-card">
+          <div class="card-top-bar">
+            <div class="card-sec-badge">
+              <span>Section 03</span> Our Story Header (.section-story)
+            </div>
+            <span style="font-size:0.85rem; color:#ffb74d; font-weight:700;">Left-Aligned &rarr; Changed to Middle-Aligned</span>
+          </div>
+          <div class="card-split-view">
+            <div class="split-col before">
+              <div>
+                <span class="col-status-tag bad">🔴 Before (Left-Aligned)</span>
+                <div class="header-render-box align-left">
+                  <span class="subheading" style="color:var(--accent);">Our Story</span>
+                  <h2 style="font-size: 1.7rem; color:#fff; margin-top: 0.35rem;">BUILD YOUR BODY. BUILD YOUR FUTURE.</h2>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item"><span class="line-num">Align:</span> Left Aligned (বাম পাশে চাপা)</div>
+                <div class="line-item"><span class="line-num">Lines:</span> ৩টি লাইন জুড়ে ছিল</div>
+              </div>
+            </div>
+            <div class="split-col after">
+              <div>
+                <span class="col-status-tag good">🟢 After (Exact 2 Lines + Middle-Aligned)</span>
+                <div class="header-render-box align-center">
+                  <span class="subheading" style="color:var(--accent);">Our Story</span>
+                  <h2 style="font-size: 1.85rem; color:#fff; margin-top: 0.35rem;">BUILD YOUR BODY.<br>BUILD YOUR FUTURE.</h2>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item accent"><span class="line-num">Title Line 1:</span> BUILD YOUR BODY.</div>
+                <div class="line-item accent"><span class="line-num">Title Line 2:</span> BUILD YOUR FUTURE.</div>
+                <div class="line-item" style="color:#16a34a;"><span class="line-num">Alignment:</span> মিডল-অ্যালাইন (Center-Aligned) ও স্ট্রং ব্যালান্স।</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. WHY SILVER GYM -->
+        <div class="comparison-card">
+          <div class="card-top-bar">
+            <div class="card-sec-badge">
+              <span>Section 04</span> Why Us Header (.section-why)
+            </div>
+            <span style="font-size:0.85rem; color:#cecbc1;">Benefits Grid</span>
+          </div>
+          <div class="card-split-view">
+            <div class="split-col before">
+              <div>
+                <span class="col-status-tag bad">🔴 Before (3 Lines Wrapped)</span>
+                <div class="header-render-box light-theme align-center">
+                  <span class="subheading">Why Us</span>
+                  <h2 style="font-size: 1.85rem; margin-top: 0.35rem;">WHY CHOOSE SILVER GYM?</h2>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item"><span class="line-num">Lines:</span> ছোট কনটেইনারের কারণে ৩ লাইনে ভাঙত</div>
+              </div>
+            </div>
+            <div class="split-col after">
+              <div>
+                <span class="col-status-tag good">🟢 After (Exact 2 Lines + Middle-Aligned)</span>
+                <div class="header-render-box light-theme align-center">
+                  <span class="subheading">Why Us</span>
+                  <h2 style="font-size: 1.85rem; margin-top: 0.35rem;">WHY CHOOSE SILVER GYM<br>FOR YOUR TRANSFORMATION?</h2>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item accent"><span class="line-num">Title Line 1:</span> WHY CHOOSE SILVER GYM</div>
+                <div class="line-item accent"><span class="line-num">Title Line 2:</span> FOR YOUR TRANSFORMATION?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. ADMISSION DETAILS (PREVIOUSLY LEFT-ALIGNED!) -->
+        <div class="comparison-card">
+          <div class="card-top-bar">
+            <div class="card-sec-badge">
+              <span>Section 05</span> Admission Header (.section-admission)
+            </div>
+            <span style="font-size:0.85rem; color:#ffb74d; font-weight:700;">Left-Aligned &rarr; Changed to Middle-Aligned</span>
+          </div>
+          <div class="card-split-view">
+            <div class="split-col before">
+              <div>
+                <span class="col-status-tag bad">🔴 Before (Left-Aligned)</span>
+                <div class="header-render-box light-theme align-left">
+                  <span class="subheading">Admission Details</span>
+                  <h3 style="font-size: 1.7rem; margin-top: 0.35rem;">MEMBERSHIP & ADMISSION</h3>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item"><span class="line-num">Align:</span> Left Aligned (টেবিলের বাম পাশে চাপা)</div>
+              </div>
+            </div>
+            <div class="split-col after">
+              <div>
+                <span class="col-status-tag good">🟢 After (Exact 2 Lines + Middle-Aligned)</span>
+                <div class="header-render-box light-theme align-center">
+                  <span class="subheading">Admission Details</span>
+                  <h3 style="font-size: 1.75rem; margin-top: 0.35rem;">MEMBERSHIP OPTIONS<br>& ADMISSION FEES</h3>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item accent"><span class="line-num">Title Line 1:</span> MEMBERSHIP OPTIONS</div>
+                <div class="line-item accent"><span class="line-num">Title Line 2:</span> & ADMISSION FEES</div>
+                <div class="line-item" style="color:#16a34a;"><span class="line-num">Alignment:</span> টেবিল কার্ডের মাঝামাঝি সেন্ট্রাল অ্যালাইন।</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. BRANCHES SECTION ON HOMEPAGE -->
+        <div class="comparison-card">
+          <div class="card-top-bar">
+            <div class="card-sec-badge">
+              <span>Section 06</span> Branches Section Header (#branches)
+            </div>
+            <span style="font-size:0.85rem; color:#cecbc1;">3 Campus Cards</span>
+          </div>
+          <div class="card-split-view">
+            <div class="split-col before">
+              <div>
+                <span class="col-status-tag bad">🔴 Before (3 Lines Wrapped)</span>
+                <div class="header-render-box light-theme align-center">
+                  <span class="subheading">Locations</span>
+                  <h2 style="font-size: 1.85rem; margin-top: 0.35rem;">FIND YOUR NEAREST SILVER GYM</h2>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item"><span class="line-num">Lines:</span> ৩টি আলাদা লাইনে র‍্যাপ হতো</div>
+              </div>
+            </div>
+            <div class="split-col after">
+              <div>
+                <span class="col-status-tag good">🟢 After (Exact 2 Lines + Middle-Aligned)</span>
+                <div class="header-render-box light-theme align-center">
+                  <span class="subheading">Locations</span>
+                  <h2 style="font-size: 1.85rem; margin-top: 0.35rem;">FIND YOUR NEAREST<br>SILVER GYM IN DHAKA</h2>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item accent"><span class="line-num">Title Line 1:</span> FIND YOUR NEAREST</div>
+                <div class="line-item accent"><span class="line-num">Title Line 2:</span> SILVER GYM IN DHAKA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. GYM TIMINGS -->
+        <div class="comparison-card">
+          <div class="card-top-bar">
+            <div class="card-sec-badge">
+              <span>Section 07</span> Gym Timings Header (.section-timings)
+            </div>
+            <span style="font-size:0.85rem; color:#cecbc1;">Shift Schedules</span>
+          </div>
+          <div class="card-split-view">
+            <div class="split-col before">
+              <div>
+                <span class="col-status-tag bad">🔴 Before (3 Lines Wrapped)</span>
+                <div class="header-render-box align-center">
+                  <span class="subheading" style="color:var(--accent);">Schedule</span>
+                  <h3 style="font-size: 1.7rem; color:#fff; margin-top: 0.35rem;">TRAIN WHEN IT WORKS FOR YOU</h3>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item"><span class="line-num">Lines:</span> ৩টি অগোছালো লাইনে ভাঙত</div>
+              </div>
+            </div>
+            <div class="split-col after">
+              <div>
+                <span class="col-status-tag good">🟢 After (Exact 2 Lines + Middle-Aligned)</span>
+                <div class="header-render-box align-center">
+                  <span class="subheading" style="color:var(--accent);">Schedule</span>
+                  <h3 style="font-size: 1.75rem; color:#fff; margin-top: 0.35rem;">DAILY GYM TIMINGS<br>FOR GENTS & LADIES</h3>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item accent"><span class="line-num">Title Line 1:</span> DAILY GYM TIMINGS</div>
+                <div class="line-item accent"><span class="line-num">Title Line 2:</span> FOR GENTS & LADIES</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. PROMOTIONAL CTA (PREVIOUSLY 4 STACKED LINES) -->
+        <div class="comparison-card">
+          <div class="card-top-bar">
+            <div class="card-sec-badge">
+              <span>Section 08</span> Promotional CTA (.section-cta)
+            </div>
+            <span style="font-size:0.85rem; color:#ff8a80; font-weight:700;">4 Lines Stacked &rarr; Reduced to Exact 2 Lines</span>
+          </div>
+          <div class="card-split-view">
+            <div class="split-col before">
+              <div>
+                <span class="col-status-tag bad">🔴 Before (4 Full Lines Stacked!)</span>
+                <div class="header-render-box align-center" style="background:#0c0d12;">
+                  <span class="subheading" style="color:var(--light);">Ready?</span>
+                  <h2 style="font-size: 1.6rem; color:#fff; margin-top: 0.2rem;">READY TO START?</h2>
+                  <h3 style="font-size: 1.15rem; color:var(--light); margin-top: 0.25rem;">YOUR STRONGER SELF IS WAITING.</h3>
+                  <p style="font-size: 0.88rem; color:#cecbc1; margin-top: 0.25rem;">Stop waiting for the perfect time...</p>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item"><span class="line-num">Problem:</span> Subheading + H2 + H3 + P = ৪টি লাইন স্ট্যাক করা!</div>
+              </div>
+            </div>
+            <div class="split-col after">
+              <div>
+                <span class="col-status-tag good">🟢 After (Exact 2 Lines + Middle-Aligned)</span>
+                <div class="header-render-box align-center" style="background:#0c0d12;">
+                  <span class="subheading" style="color:var(--accent);">Ready?</span>
+                  <h2 style="font-size: 1.85rem; color:#fff; margin-top: 0.35rem;">READY TO START?<br>YOUR STRONGER SELF IS WAITING</h2>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item accent"><span class="line-num">Title Line 1:</span> READY TO START?</div>
+                <div class="line-item accent"><span class="line-num">Title Line 2:</span> YOUR STRONGER SELF IS WAITING</div>
+                <div class="line-item" style="color:#16a34a;"><span class="line-num">Alignment:</span> মাঝখানে মিডল-অ্যালাইন ও ঠিক ২ লাইনের টাইটেল।</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. FOOTER LOCATION CARDS HEADER -->
+        <div class="comparison-card">
+          <div class="card-top-bar">
+            <div class="card-sec-badge">
+              <span>Section 09</span> Footer Location Header (.footer-cards-header)
+            </div>
+            <span style="font-size:0.85rem; color:#cecbc1;">Multi-Branch Location Footer</span>
+          </div>
+          <div class="card-split-view">
+            <div class="split-col before">
+              <div>
+                <span class="col-status-tag bad">🔴 Before (3 Lines)</span>
+                <div class="header-render-box align-center" style="background:#08090d;">
+                  <span class="subheading">Locations in Dhaka</span>
+                  <h3 style="font-size: 1.5rem; color:#fff; margin-top: 0.35rem;">FIND YOUR NEAREST SILVER GYM</h3>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item"><span class="line-num">Lines:</span> ৩টি লাইনে বিভক্ত হতো</div>
+              </div>
+            </div>
+            <div class="split-col after">
+              <div>
+                <span class="col-status-tag good">🟢 After (Exact 2 Lines + Middle-Aligned)</span>
+                <div class="header-render-box align-center" style="background:#08090d;">
+                  <span class="subheading">Locations in Dhaka</span>
+                  <h3 style="font-size: 1.55rem; color:#fff; margin-top: 0.35rem;">FIND YOUR NEAREST<br>SILVER GYM BRANCH</h3>
+                </div>
+              </div>
+              <div class="line-breakdown-list">
+                <div class="line-item accent"><span class="line-num">Title Line 1:</span> FIND YOUR NEAREST</div>
+                <div class="line-item accent"><span class="line-num">Title Line 2:</span> SILVER GYM BRANCH</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         TAB 2: FULL HOMEPAGE LIVE VIEW (WITH 2-LINE MIDDLE-ALIGNED HEADERS)
+         ========================================================================= -->
+    <div id="tab-live-after" class="preview-tab-pane">
+      <div class="full-live-frame">
+        <div class="live-frame-banner">
+          <div><strong style="color:#4ade80;">● LIVE HOMEPAGE PREVIEW:</strong> All Section Headers 2-Lines & Middle-Aligned</div>
+          <span style="opacity:0.8;">Cards & Titles are perfectly centered & aligned</span>
+        </div>
+
+        <div style="background:var(--background); padding: 3rem 0;">
+
+          <!-- SECTION 1: SERVICES -->
+          <div class="sim-sec">
+            <div class="sim-header">
+              <span class="subheading">What We Offer</span>
+              <h2 style="font-size: 2.2rem; color:var(--heading);">EVERYTHING YOU NEED<br>TO REACH YOUR FITNESS GOALS</h2>
+            </div>
+            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;">
+              <div style="background:#fff; padding: 2.2rem; border-radius: 12px; border:1px solid #dcdad0; text-align:center;">
+                <h5 style="margin:0 0 0.5rem; font-family:'Unbounded',sans-serif; font-size:1.15rem;">Strength Training</h5>
+                <p style="margin:0; color:#666; font-size:0.9rem;">Build strength, muscle and power with quality equipment.</p>
+              </div>
+              <div style="background:#fff; padding: 2.2rem; border-radius: 12px; border:1px solid #dcdad0; text-align:center;">
+                <h5 style="margin:0 0 0.5rem; font-family:'Unbounded',sans-serif; font-size:1.15rem;">Cardio Training</h5>
+                <p style="margin:0; color:#666; font-size:0.9rem;">Improve endurance, stamina and cardiovascular health.</p>
+              </div>
+              <div style="background:#fff; padding: 2.2rem; border-radius: 12px; border:1px solid #dcdad0; text-align:center;">
+                <h5 style="margin:0 0 0.5rem; font-family:'Unbounded',sans-serif; font-size:1.15rem;">Personal Training</h5>
+                <p style="margin:0; color:#666; font-size:0.9rem;">Personalized guidance from experienced fitness coaches.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 2: ABOUT US (CENTERED HEADER + 2 LINES!) -->
+          <div class="sim-sec light-box">
+            <div class="sim-header" style="margin-bottom: 2rem;">
+              <span class="subheading">About Us</span>
+              <h2 style="font-size: 2.2rem; color:var(--heading);">YOUR FITNESS JOURNEY<br>STARTS RIGHT HERE</h2>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--paragraphs); font-size: 1.05rem; line-height: 1.7;">
+              <p style="margin-bottom: 1rem;">Silver Gym is built for people who want to become stronger, healthier, and more confident.</p>
+              <p style="margin-bottom: 1.5rem;">With modern facilities across Dhaka, separate workout floors for men and women, and certified trainers, we help you stay consistent every single day.</p>
+              <a href="javascript:void(0)" class="l2-btn-call" style="display:inline-flex; max-width: 220px; margin: 0 auto;">Learn More About Us</a>
+            </div>
+          </div>
+
+          <!-- SECTION 3: WHY US -->
+          <div class="sim-sec">
+            <div class="sim-header">
+              <span class="subheading">Why Us</span>
+              <h2 style="font-size: 2.2rem; color:var(--heading);">WHY CHOOSE SILVER GYM<br>FOR YOUR TRANSFORMATION?</h2>
+            </div>
+            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; text-align: center;">
+              <div style="background:#fff; padding: 2.5rem 1.8rem; border-radius: 12px; border:1px solid #dcdad0;">
+                <h5 style="font-family:'Unbounded',sans-serif; font-size:1.1rem; margin-bottom:0.5rem;">Separate Workout Spaces</h5>
+                <p style="color:#666; font-size:0.9rem; margin:0;">Dedicated training environments for men and women.</p>
+              </div>
+              <div style="background:#fff; padding: 2.5rem 1.8rem; border-radius: 12px; border:1px solid #dcdad0;">
+                <h5 style="font-family:'Unbounded',sans-serif; font-size:1.1rem; margin-bottom:0.5rem;">3 Dhaka Locations</h5>
+                <p style="color:#666; font-size:0.9rem; margin:0;">Rayarbag, South Banasree, and Rampura facilities.</p>
+              </div>
+              <div style="background:#fff; padding: 2.5rem 1.8rem; border-radius: 12px; border:1px solid #dcdad0;">
+                <h5 style="font-family:'Unbounded',sans-serif; font-size:1.1rem; margin-bottom:0.5rem;">Certified Trainers</h5>
+                <p style="color:#666; font-size:0.9rem; margin:0;">Expert mentors on floor to guide and motivate you.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 4: OUR STORY (DARK BLOCK + CENTERED HEADER) -->
+          <div class="sim-sec dark">
+            <div class="sim-header">
+              <span class="subheading" style="color:var(--accent);">Our Story</span>
+              <h2 style="font-size: 2.2rem; color:#fff;">BUILD YOUR BODY.<br>BUILD YOUR FUTURE.</h2>
+            </div>
+            <div style="max-width: 750px; margin: 0 auto; text-align: center; color: #cecbc1; font-size: 1.05rem; line-height: 1.7;">
+              <p>Silver Gym was created with one simple goal — to make quality fitness accessible to more people. We believe a gym should be more than a workout place; it should be where you build discipline, confidence, and strength.</p>
+            </div>
+          </div>
+
+          <!-- SECTION 5: BRANCHES LOCATIONS -->
+          <div class="sim-sec">
+            <div class="sim-header">
+              <span class="subheading">Locations</span>
+              <h2 style="font-size: 2.2rem; color:var(--heading);">FIND YOUR NEAREST<br>SILVER GYM IN DHAKA</h2>
+            </div>
+            <div class="l2-grid" style="margin-bottom:0;">
+              <div class="l2-card">
+                <div class="l2-card-image" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80');"><span class="l2-card-badge">BRANCH 01</span></div>
+                <div class="l2-card-body"><h3>RAYARBAG</h3><p>Mannan Tower, Kadamtali, Dhaka</p></div>
+              </div>
+              <div class="l2-card">
+                <div class="l2-card-image" style="background-image: url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=800&q=80');"><span class="l2-card-badge">BRANCH 02</span></div>
+                <div class="l2-card-body"><h3>SOUTH BANASREE</h3><p>House #34/36, Road #13/1, Khilgaon</p></div>
+              </div>
+              <div class="l2-card">
+                <div class="l2-card-image" style="background-image: url('https://images.unsplash.com/photo-1596357395217-80de13130e92?w=800&q=80');"><span class="l2-card-badge">BRANCH 03</span></div>
+                <div class="l2-card-body"><h3>RAMPURA</h3><p>Main Road Banasree, 7th Floor</p></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 6: TIMINGS -->
+          <div class="sim-sec dark">
+            <div class="sim-header">
+              <span class="subheading" style="color:var(--accent);">Schedule</span>
+              <h3 style="font-size: 2rem; color:#fff;">DAILY GYM TIMINGS<br>FOR GENTS & LADIES</h3>
+            </div>
+            <div style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap;">
+              <div style="background:#191c25; padding: 1.5rem 2.8rem; border-radius: 10px; border:1px solid #292d3b; text-align:center;">
+                <div style="color:#64b5f6; font-weight:700; margin-bottom:0.4rem; font-size:0.95rem;">🏋️‍♂️ GENTS SHIFT</div>
+                <div style="font-size:0.95rem; color:#dcd9d0;">7:30 AM — 1:30 PM &bull; 4:00 PM — 10:30 PM</div>
+              </div>
+              <div style="background:#191c25; padding: 1.5rem 2.8rem; border-radius: 10px; border:1px solid #292d3b; text-align:center;">
+                <div style="color:#f48fb1; font-weight:700; margin-bottom:0.4rem; font-size:0.95rem;">🏋️‍♀️ LADIES SHIFT</div>
+                <div style="font-size:0.95rem; color:#dcd9d0;">9:00 AM — 1:00 PM &bull; 4:00 PM — 10:00 PM</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 7: PROMOTIONAL CTA -->
+          <div class="sim-sec dark" style="background:#0c0d12; border:1px solid #242938;">
+            <div class="sim-header" style="margin-bottom: 2rem;">
+              <span class="subheading" style="color:var(--accent);">Ready?</span>
+              <h2 style="font-size: 2.2rem; color:#fff;">READY TO START?<br>YOUR STRONGER SELF IS WAITING</h2>
+            </div>
+            <div style="text-align: center;">
+              <a href="tel:01614484411" class="l2-btn-call" style="display:inline-flex; max-width:240px; padding:0.9rem 2rem;">Call Branch: 01614-484411</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function switchPreviewMode(tabId) {
+      document.querySelectorAll('.mode-tab-btn').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      document.querySelectorAll('.preview-tab-pane').forEach(pane => pane.classList.remove('active'));
+      const target = document.getElementById(tabId);
+      if (target) {
+        target.classList.add('active');
+      }
+    }
+  </script>
+
+</body>
+</html>

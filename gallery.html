@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery — Silver Gym</title>
+  <meta name="description" content="Explore inside Silver Gym branches in Dhaka. Photos of modern equipment, workout zones, and facilities across Rayarbag, South Banasree, and Rampura.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css?v=2">
+</head>
+<body>
+
+  <!-- ========================================
+       NAVBAR
+       ======================================== -->
+  <nav class="navbar">
+    <div class="nav-block">
+      <a href="index.html" class="nav-logo">SILVER <span>GYM</span></a>
+
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#about" class="nav-link">About</a>
+        <a href="index.html#services" class="nav-link">Services</a>
+        <a href="index.html#membership" class="nav-link">Membership</a>
+        <a href="branches.html" class="nav-link">Branches</a>
+        <a href="index.html#trainers" class="nav-link">Trainers</a>
+        <a href="gallery.html" class="nav-link active">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+
+      <a href="index.html#membership" class="link-button-nav nav-cta-desktop">
+        <span class="button-text">Become a Member</span>
+        <span class="button-hover"></span>
+      </a>
+
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#membership">Membership</a>
+    <a href="branches.html">Branches</a>
+    <a href="index.html#trainers">Trainers</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <div class="mobile-nav-buttons">
+      <a href="tel:01614484411" class="link-button red">
+        <span class="button-text">Call Now</span>
+        <span class="button-hover"></span>
+      </a>
+      <a href="index.html#membership" class="link-button">
+        <span class="button-text">Join Now</span>
+        <span class="button-hover"></span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================
+       PAGE HERO
+       ======================================== -->
+  <section class="page-hero-section">
+    <div class="page-hero">
+      <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1920&q=80');"></div>
+      <div class="page-hero-overlay"></div>
+      <div class="page-hero-content">
+        <span class="subheading" style="color: var(--accent);">Branch Galleries</span>
+        <h1>INSIDE SILVER GYM</h1>
+        <p>Explore our 3 branches across Dhaka. Choose any branch below to view its dedicated workout spaces, equipment, and facilities.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       BRANCH SELECTION PORTAL (3 BRANCHES)
+       ======================================== -->
+  <section class="gallery-portal-section section">
+    <div class="section-inner" style="padding-top: 1em; padding-bottom: 1.5em;">
+      
+      <div class="gallery-portal-grid">
+        <!-- Rayarbag Portal Card -->
+        <div class="gallery-portal-card" data-branch="rayarbag">
+          <div class="gallery-portal-bg" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80');"></div>
+          <div class="gallery-portal-overlay"></div>
+          <div class="gallery-portal-content">
+            <span class="gallery-portal-badge">6 Photos • Kadamtali</span>
+            <h4>Rayarbag Branch</h4>
+            <p>Mannan Tower, Madinabag • Cardio & Strength zones</p>
+            <span class="gallery-portal-btn">View Rayarbag Photos →</span>
+          </div>
+        </div>
+
+        <!-- South Banasree Portal Card -->
+        <div class="gallery-portal-card" data-branch="south-banasree">
+          <div class="gallery-portal-bg" style="background-image: url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=800&q=80');"></div>
+          <div class="gallery-portal-overlay"></div>
+          <div class="gallery-portal-content">
+            <span class="gallery-portal-badge">6 Photos • Khilgaon</span>
+            <h4>South Banasree Branch</h4>
+            <p>House #34/36, Road 13/1 • Men & Women spaces</p>
+            <span class="gallery-portal-btn">View Banasree Photos →</span>
+          </div>
+        </div>
+
+        <!-- Rampura Portal Card -->
+        <div class="gallery-portal-card" data-branch="rampura">
+          <div class="gallery-portal-bg" style="background-image: url('https://images.unsplash.com/photo-1596357395217-80de13130e92?w=800&q=80');"></div>
+          <div class="gallery-portal-overlay"></div>
+          <div class="gallery-portal-content">
+            <span class="gallery-portal-badge">6 Photos • Main Road</span>
+            <h4>Rampura Branch</h4>
+            <p>House #7-8, 7th Floor • High-altitude cardio & weights</p>
+            <span class="gallery-portal-btn">View Rampura Photos →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Buttons Row -->
+      <div class="gallery-filter-tabs-wrapper">
+        <div class="gallery-filter-tabs">
+          <button class="gallery-tab-btn active" data-branch="all">✨ All Branches (18)</button>
+          <button class="gallery-tab-btn" data-branch="rayarbag">📍 Rayarbag (6)</button>
+          <button class="gallery-tab-btn" data-branch="south-banasree">📍 South Banasree (6)</button>
+          <button class="gallery-tab-btn" data-branch="rampura">📍 Rampura (6)</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================
+       GALLERY PHOTO SECTIONS BY BRANCH
+       ======================================== -->
+  <section class="section-gallery-page section" style="padding-top: 0;">
+    <div class="section-inner" style="padding-top: 0;">
+
+      <!-- ====================================
+           RAYARBAG BRANCH GALLERY
+           ==================================== -->
+      <div class="gallery-branch-section animate-in" id="gallery-rayarbag" data-branch="rayarbag">
+        <div class="gallery-branch-header">
+          <div>
+            <span class="subheading" style="color: var(--accent); font-size: 0.85em; text-transform: uppercase; font-weight: 700;">Branch 01</span>
+            <h3 style="margin-top: 0.2em;">Rayarbag Branch Gallery</h3>
+            <p style="color: var(--paragraphs); font-size: 0.95em; margin-top: 0.3em;">Mannan Tower, Holding No: 3553, Madinabag, Kadamtali, Dhaka • 📞 <a href="tel:01614484411" style="color: var(--accent); font-weight: 600;">01614-484411</a></p>
+          </div>
+          <div style="display: flex; gap: 0.75em; flex-wrap: wrap;">
+            <a href="branches.html#rayarbag" class="link-button">
+              <span class="button-text">Branch Details & Map ↗</span>
+              <span class="button-hover"></span>
+            </a>
+          </div>
+        </div>
+        <div class="gallery-page-grid">
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80" alt="Rayarbag Branch — Main Gym Floor">
+            <div class="gallery-overlay"><span>Main Gym Floor</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=800&q=80" alt="Rayarbag Branch — Equipment Setup">
+            <div class="gallery-overlay"><span>Equipment Setup</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80" alt="Rayarbag Branch — Functional Training">
+            <div class="gallery-overlay"><span>Functional Training</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80" alt="Rayarbag Branch — Cardio Zone">
+            <div class="gallery-overlay"><span>Cardio Zone</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&q=80" alt="Rayarbag Branch — Strength Area">
+            <div class="gallery-overlay"><span>Strength Area</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1550345332-09e3ac987658?w=800&q=80" alt="Rayarbag Branch — Free Weights Area">
+            <div class="gallery-overlay"><span>Free Weights Area</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================
+           SOUTH BANASREE BRANCH GALLERY
+           ==================================== -->
+      <div class="gallery-branch-section animate-in" id="gallery-south-banasree" data-branch="south-banasree" style="margin-top: 4em;">
+        <div class="gallery-branch-header">
+          <div>
+            <span class="subheading" style="color: var(--accent); font-size: 0.85em; text-transform: uppercase; font-weight: 700;">Branch 02</span>
+            <h3 style="margin-top: 0.2em;">South Banasree Branch Gallery</h3>
+            <p style="color: var(--paragraphs); font-size: 0.95em; margin-top: 0.3em;">House #34/36, Block #K, Road #13/1, Khilgaon, Dhaka-1219 • 📞 <a href="tel:+8801706205822" style="color: var(--accent); font-weight: 600;">+880 1706-205822</a></p>
+          </div>
+          <div style="display: flex; gap: 0.75em; flex-wrap: wrap;">
+            <a href="branches.html#south-banasree" class="link-button">
+              <span class="button-text">Branch Details & Map ↗</span>
+              <span class="button-hover"></span>
+            </a>
+          </div>
+        </div>
+        <div class="gallery-page-grid">
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=800&q=80" alt="South Banasree — Spacious Facility">
+            <div class="gallery-overlay"><span>Spacious Facility</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=800&q=80" alt="South Banasree — Advanced Machines">
+            <div class="gallery-overlay"><span>Advanced Machines</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80" alt="South Banasree — Personal Training">
+            <div class="gallery-overlay"><span>Personal Training</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=800&q=80" alt="South Banasree — Endurance & Cardio">
+            <div class="gallery-overlay"><span>Endurance & Cardio</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=800&q=80" alt="South Banasree — Dedicated Workout Area">
+            <div class="gallery-overlay"><span>Dedicated Workout Area</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80" alt="South Banasree — Dumbbells & Racks">
+            <div class="gallery-overlay"><span>Dumbbells & Racks</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================
+           RAMPURA BRANCH GALLERY
+           ==================================== -->
+      <div class="gallery-branch-section animate-in" id="gallery-rampura" data-branch="rampura" style="margin-top: 4em;">
+        <div class="gallery-branch-header">
+          <div>
+            <span class="subheading" style="color: var(--accent); font-size: 0.85em; text-transform: uppercase; font-weight: 700;">Branch 03</span>
+            <h3 style="margin-top: 0.2em;">Rampura Branch Gallery</h3>
+            <p style="color: var(--paragraphs); font-size: 0.95em; margin-top: 0.3em;">House #7-8, Block #A, 7th Floor, Main Road Banasree, Dhaka • 📞 <a href="tel:+8801705360925" style="color: var(--accent); font-weight: 600;">+880 1705-360925</a></p>
+          </div>
+          <div style="display: flex; gap: 0.75em; flex-wrap: wrap;">
+            <a href="branches.html#rampura" class="link-button">
+              <span class="button-text">Branch Details & Map ↗</span>
+              <span class="button-hover"></span>
+            </a>
+          </div>
+        </div>
+        <div class="gallery-page-grid">
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1596357395217-80de13130e92?w=800&q=80" alt="Rampura Branch — 7th Floor Skyline View">
+            <div class="gallery-overlay"><span>7th Floor Skyline View</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1581009137042-c552e485697a?w=800&q=80" alt="Rampura Branch — Heavy Lifting Zone">
+            <div class="gallery-overlay"><span>Heavy Lifting Zone</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=800&q=80" alt="Rampura Branch — Warmup & Stretching">
+            <div class="gallery-overlay"><span>Warmup & Stretching</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba?w=800&q=80" alt="Rampura Branch — Cardio Deck">
+            <div class="gallery-overlay"><span>Cardio Deck</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&q=80" alt="Rampura Branch — Powerlifting & Squats">
+            <div class="gallery-overlay"><span>Powerlifting & Squats</span></div>
+          </div>
+          <div class="gallery-page-item animate-in">
+            <img src="https://images.unsplash.com/photo-1550345332-09e3ac987658?w=800&q=80" alt="Rampura Branch — Full Free Weights Section">
+            <div class="gallery-overlay"><span>Full Free Weights Section</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox">
+    <button class="lightbox-close">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <img class="lightbox-img" src="" alt="Gallery Image">
+  </div>
+
+  <!-- ========================================
+       CTA
+       ======================================== -->
+  <section class="section-cta section">
+    <div class="cta-block animate-in">
+      <div class="cta-content">
+        <span class="subheading" style="color: var(--light);">Visit Us</span>
+        <h2 style="margin-top: .5em;">SEE IT IN PERSON</h2>
+        <p>Photos don't do it justice. Visit your nearest Silver Gym branch and experience it yourself.</p>
+        <div class="cta-buttons">
+          <a href="branches.html" class="link-button light">
+            <span class="button-text">View All Branches</span>
+            <span class="button-hover"></span>
+          </a>
+          <a href="tel:01614484411" class="link-button" style="background-color: transparent; border: 2px solid var(--light);">
+            <span class="button-text">Call Now</span>
+            <span class="button-hover"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       FOOTER (OPTION C — MULTI-BRANCH CARDS)
+       ======================================== -->
+  <footer class="section-footer section">
+    <div class="footer-branch-cards">
+
+      <div class="footer-cards-header">
+        <span class="subheading">Locations in Dhaka</span>
+        <h3>FIND YOUR NEAREST SILVER GYM</h3>
+      </div>
+
+      <!-- 3 Branch Cards -->
+      <div class="footer-cards-grid">
+        <!-- Rayarbag -->
+        <div class="footer-card">
+          <div>
+            <div class="footer-card-top">
+              <h4>RAYARBAG</h4>
+              <span class="footer-card-status"><span class="dot"></span> Open Today</span>
+            </div>
+            <div class="footer-card-addr">
+              Mannan Tower, Holding No: 3553, Madinabag, Kadamtali, Dhaka
+            </div>
+          </div>
+          <div class="footer-card-actions">
+            <a href="tel:01614484411" class="footer-btn-call">📞 01614-484411</a>
+            <a href="https://maps.google.com/?q=Mannan+Tower+Holding+No+3553+Madinabag+Kadamtali+Dhaka" target="_blank" class="footer-btn-map">Map ↗</a>
+          </div>
+        </div>
+
+        <!-- South Banasree -->
+        <div class="footer-card">
+          <div>
+            <div class="footer-card-top">
+              <h4>SOUTH BANASREE</h4>
+              <span class="footer-card-status"><span class="dot"></span> Open Today</span>
+            </div>
+            <div class="footer-card-addr">
+              House #34/36, Block #K, Road #13/1, Khilgaon, Dhaka-1219
+            </div>
+          </div>
+          <div class="footer-card-actions">
+            <a href="tel:+8801706205822" class="footer-btn-call">📞 01706-205822</a>
+            <a href="https://maps.google.com/?q=House+34+36+Block+K+Road+13+1+Dakhin+Banasree+Khilgaon+Dhaka+1219" target="_blank" class="footer-btn-map">Map ↗</a>
+          </div>
+        </div>
+
+        <!-- Rampura -->
+        <div class="footer-card">
+          <div>
+            <div class="footer-card-top">
+              <h4>RAMPURA</h4>
+              <span class="footer-card-status"><span class="dot"></span> Open Today</span>
+            </div>
+            <div class="footer-card-addr">
+              House #7-8, Block #A, 7th Floor, Main Road Banasree, Dhaka
+            </div>
+          </div>
+          <div class="footer-card-actions">
+            <a href="tel:+8801705360925" class="footer-btn-call">📞 01705-360925</a>
+            <a href="https://maps.google.com/?q=House+7+8+Block+A+Main+Road+Banasree+Rampura+Dhaka+1219" target="_blank" class="footer-btn-map">Map ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Bottom Strip -->
+      <div class="footer-strip">
+        <div class="footer-strip-left">
+          <span class="footer-strip-logo">SILVER <span class="accent-text">GYM</span></span>
+          <div class="footer-strip-links">
+            <a href="index.html#membership">Membership</a>
+            <a href="branches.html">Branches</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="https://wa.me/8801614484411" target="_blank">WhatsApp Support</a>
+          </div>
+        </div>
+        <div class="footer-strip-copy">
+          &copy; 2026 Silver Gym. All rights reserved.
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/8801614484411" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>

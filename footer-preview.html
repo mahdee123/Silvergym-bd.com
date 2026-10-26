@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Footer Design Previews — Silver Gym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Preview Controller Bar */
+    .preview-header {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: #111318;
+      border-bottom: 2px solid var(--accent);
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .preview-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .preview-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    .preview-title h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.1rem;
+      color: #fff;
+      margin: 0;
+    }
+    .preview-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: #1e212b;
+      color: #cecbc1;
+      border: 1px solid #333846;
+      padding: 0.55rem 1rem;
+      border-radius: 6px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn:hover {
+      background: #2a2e3d;
+      color: #fff;
+      border-color: #555;
+    }
+    .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 2px 12px rgba(211, 60, 46, 0.4);
+    }
+    .preview-container {
+      padding: 3rem 1.5rem 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .preview-section {
+      display: none;
+    }
+    .preview-section.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .option-meta {
+      background: #fff;
+      border: 1px solid #d9d7ce;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .option-meta h3 {
+      font-family: 'Unbounded', sans-serif;
+      color: var(--heading);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .option-meta p {
+      color: var(--paragraphs);
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+    .option-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tag {
+      background: #eeebe3;
+      color: #333;
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .tag.primary {
+      background: rgba(211, 60, 46, 0.12);
+      color: var(--accent);
+    }
+
+    /* =========================================================
+       OPTION A: High-Conversion Athletic Footer Styles
+       ========================================================= */
+    .opt-a-footer {
+      background-color: var(--heading);
+      border-radius: var(--corner-12);
+      padding: 3rem 3.5rem 2.5rem;
+      color: var(--light);
+    }
+    /* Trial Bar */
+    .opt-a-trial-bar {
+      background: linear-gradient(135deg, #1f222b 0%, #15171d 100%);
+      border: 1px solid #2e3341;
+      border-radius: var(--corner-8);
+      padding: 1.75rem 2rem;
+      margin-bottom: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .opt-a-trial-text h4 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.15rem;
+      color: #fff;
+      margin-bottom: 0.25rem;
+    }
+    .opt-a-trial-text p {
+      color: #a8a69e;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+    .opt-a-trial-form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .opt-a-input {
+      background: #0d0e12;
+      border: 1px solid #333846;
+      color: #fff;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      min-width: 220px;
+    }
+    .opt-a-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .opt-a-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .opt-a-btn:hover {
+      background: var(--accent-darker);
+    }
+    /* 4-col Grid */
+    .opt-a-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr 1.3fr 1.2fr;
+      gap: 2.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .opt-a-col h5 {
+      color: #fff;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      position: relative;
+    }
+    .opt-a-col h5::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -0.5rem;
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+    }
+    .opt-a-brand p {
+      color: #9c9a92;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .opt-a-socials {
+      display: flex;
+      gap: 0.6rem;
+    }
+    .opt-a-social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #1b1d24;
+      border: 1px solid #2e3341;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      transition: all 0.25s ease;
+    }
+    .opt-a-social-icon:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .opt-a-social-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+    .opt-a-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .opt-a-links a {
+      color: #a8a69e;
+      font-size: 0.95rem;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .opt-a-links a:hover {
+      color: #fff;
+      transform: translateX(4px);
+    }
+    .opt-a-branch-item {
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed rgba(255,255,255,0.08);
+    }
+    .opt-a-branch-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .opt-a-branch-item strong {
+      display: block;
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+    .opt-a-branch-item span {
+      display: block;
+      color: #88867f;
+      font-size: 0.85rem;
+      margin-bottom: 0.35rem;
+    }
+    .opt-a-branch-item a {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .opt-a-timing-badge {
+      background: #161820;
+      border: 1px solid #2a2e3a;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.9rem;
+    }
+    .opt-a-timing-badge .shift-title {
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .opt-a-timing-badge.gents .shift-title { color: #64b5f6; }
+    .opt-a-timing-badge.ladies .shift-title { color: #f48fb1; }
+    .opt-a-timing-badge .shift-hours {
+      color: #dcd9d0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .opt-a-schedule-days {
+      color: #88867f;
+      font-size: 0.82rem;
+      text-align: right;
+      margin-top: 0.25rem;
+    }
+    /* Bottom Bar */
+    .opt-a-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: #88867f;
+      font-size: 0.88rem;
+    }
+    .opt-a-legal-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .opt-a-legal-links a {
+      color: #88867f;
+      transition: color 0.2s ease;
+    }
+    .opt-a-legal-links a:hover {
+      color: #fff;
+    }
+
+    /* =========================================================
+       OPTION B: Bold Typographic & Brand Statement Styles
+       ========================================================= */
+    .opt-b-footer {
+      background-color: var(--heading);
+      border-radius: var(--corner-12);
+      padding: 4.5rem 3.5rem 2rem;
+      color: var(--light);
+      position: relative;
+      overflow: hidden;
+    }
+    .opt-b-hero-callout {
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding-bottom: 3.5rem;
+      margin-bottom: 3.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .opt-b-hero-callout h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: #fff;
+      line-height: 1.1;
+      max-width: 650px;
+    }
+    .opt-b-hero-callout h2 span {
+      color: var(--accent);
+    }
+    .opt-b-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .opt-b-btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 2rem;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      border-radius: 6px;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .opt-b-btn-primary:hover {
+      background: var(--accent-darker);
+      transform: translateY(-2px);
+    }
+    .opt-b-btn-secondary {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.25);
+      color: #fff;
+      padding: 1rem 1.8rem;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      border-radius: 6px;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s ease;
+    }
+    .opt-b-btn-secondary:hover {
+      border-color: #fff;
+      background: rgba(255,255,255,0.06);
+    }
+    .opt-b-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 4rem;
+    }
+    .opt-b-watermark {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Unbounded', sans-serif;
+      font-size: 13vw;
+      font-weight: 900;
+      color: rgba(255,255,255,0.02);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 1;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       OPTION C: Multi-Branch Location Cards Styles
+       ========================================================= */
+    .opt-c-footer {
+      background-color: var(--heading);
+      border-radius: var(--corner-12);
+      padding: 3.5rem 3.5rem 2rem;
+      color: var(--light);
+    }
+    .opt-c-cards-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .opt-c-cards-header .subheading {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .opt-c-cards-header h3 {
+      font-family: 'Unbounded', sans-serif;
+      color: #fff;
+      font-size: 1.7rem;
+    }
+    .opt-c-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .opt-c-card {
+      background: #15171e;
+      border: 1px solid #272a35;
+      border-radius: 12px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+    .opt-c-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+    }
+    .opt-c-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .opt-c-card-top h4 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.1rem;
+      color: #fff;
+      margin: 0;
+    }
+    .opt-c-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #4ade80;
+      background: rgba(74, 222, 128, 0.1);
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+    }
+    .opt-c-status .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+    }
+    .opt-c-card-addr {
+      color: #a09d94;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      min-height: 2.8em;
+    }
+    .opt-c-card-actions {
+      display: flex;
+      gap: 0.6rem;
+    }
+    .opt-c-btn-call {
+      flex: 1;
+      background: var(--accent);
+      color: #fff;
+      text-align: center;
+      padding: 0.65rem 0.8rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: background 0.2s ease;
+    }
+    .opt-c-btn-call:hover {
+      background: var(--accent-darker);
+    }
+    .opt-c-btn-map {
+      background: #232733;
+      color: #fff;
+      padding: 0.65rem 0.9rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+    .opt-c-btn-map:hover {
+      background: #323748;
+    }
+    .opt-c-links-strip {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+      .opt-a-grid, .opt-b-grid, .opt-c-cards-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .opt-a-footer, .opt-b-footer, .opt-c-footer {
+        padding: 3rem 2rem 2rem;
+      }
+    }
+    @media (max-width: 640px) {
+      .opt-a-grid, .opt-b-grid, .opt-c-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .opt-a-trial-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .opt-a-trial-form {
+        flex-direction: column;
+      }
+      .opt-a-input {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body style="background-color: var(--background); margin: 0; padding: 0;">
+
+  <!-- Controller Sticky Top Bar -->
+  <header class="preview-header">
+    <div class="preview-title">
+      <span class="preview-badge">Live Preview</span>
+      <h2>Silver Gym — Footer Redesign Showcase</h2>
+    </div>
+    <div class="preview-tabs">
+      <button class="tab-btn active" onclick="switchTab('optionA')">Option A: High-Conversion Athletic ⭐</button>
+      <button class="tab-btn" onclick="switchTab('optionB')">Option B: Bold Typographic & Brand</button>
+      <button class="tab-btn" onclick="switchTab('optionC')">Option C: Multi-Branch Location Cards</button>
+      <button class="tab-btn" onclick="switchTab('current')">Current Footer (Before)</button>
+    </div>
+  </header>
+
+  <main class="preview-container">
+
+    <!-- =========================================================================
+         OPTION A PREVIEW
+         ========================================================================= -->
+    <section id="optionA" class="preview-section active">
+      <div class="option-meta">
+        <h3>Option A: High-Conversion "Athletic Club" Footer <span style="font-size:0.75rem; background:var(--accent); color:#fff; padding:0.2rem 0.5rem; border-radius:4px;">RECOMMENDED</span></h3>
+        <p>A comprehensive, conversion-focused footer that answers all critical questions in one place: 1-Day Trial lead capture, direct branch phone hotlines, and separate Gents/Ladies shift schedules.</p>
+        <div class="option-highlights">
+          <span class="tag primary">✓ 1-Day Free Pass Trial Bar</span>
+          <span class="tag">✓ 3 Dhaka Branches + Hotlines</span>
+          <span class="tag">✓ Gents & Ladies Timetables</span>
+          <span class="tag">✓ Interactive Social SVG Buttons</span>
+          <span class="tag">✓ Member Trust & Legal Links</span>
+        </div>
+      </div>
+
+      <!-- FOOTER OPTION A RENDERED -->
+      <footer class="section-footer">
+        <div class="opt-a-footer">
+
+          <!-- 1-Day Trial Bar -->
+          <div class="opt-a-trial-bar">
+            <div class="opt-a-trial-text">
+              <h4>CLAIM YOUR 1-DAY FREE WORKOUT PASS</h4>
+              <p>Experience Dhaka's modern training facilities. No commitment required.</p>
+            </div>
+            <form class="opt-a-trial-form" onsubmit="event.preventDefault(); alert('Pass requested! We will call you.');">
+              <input type="tel" class="opt-a-input" placeholder="Enter phone number (e.g. 017...)" required>
+              <button type="submit" class="opt-a-btn">Get Free Pass</button>
+            </form>
+          </div>
+
+          <!-- Main 4-Column Grid -->
+          <div class="opt-a-grid">
+
+            <!-- Col 1: Brand Info -->
+            <div class="opt-a-col opt-a-brand">
+              <h3 class="logo-footer" style="margin-bottom: 1rem;">SILVER <span class="accent-text">GYM</span></h3>
+              <p>Build your body. Build your confidence. Modern equipment, certified trainers, and dedicated training spaces in Dhaka, Bangladesh.</p>
+              <div class="opt-a-socials">
+                <a href="https://facebook.com" target="_blank" class="opt-a-social-icon" aria-label="Facebook">
+                  <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="opt-a-social-icon" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://wa.me/8801614484411" target="_blank" class="opt-a-social-icon" aria-label="WhatsApp">
+                  <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.945.003-6.556 5.338-11.892 11.893-11.892 3.18 0 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99 0-3.951-.5-5.688-1.448l-6.305 1.654zm6.59-3.807c1.676.995 3.276 1.591 5.316 1.592 5.448 0 9.882-4.434 9.885-9.884.002-2.641-1.026-5.124-2.893-6.994-1.868-1.869-4.35-2.898-6.991-2.898-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.991 1.696 5.645l-.999 3.649 3.875-.994z"/></svg>
+                </a>
+                <a href="https://youtube.com" target="_blank" class="opt-a-social-icon" aria-label="YouTube">
+                  <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Col 2: Navigation -->
+            <div class="opt-a-col">
+              <h5>Quick Links</h5>
+              <div class="opt-a-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#about">About Silver Gym</a>
+                <a href="index.html#services">Workout Programs</a>
+                <a href="index.html#membership">Membership & Pricing</a>
+                <a href="branches.html">Find a Branch</a>
+                <a href="gallery.html">Gym Photo Gallery</a>
+                <a href="contact.html">Contact & Directions</a>
+              </div>
+            </div>
+
+            <!-- Col 3: Branches -->
+            <div class="opt-a-col">
+              <h5>Our Branches</h5>
+              <div class="opt-a-branch-item">
+                <strong>Rayarbag Branch</strong>
+                <span>Mannan Tower, Madinabag, Kadamtali</span>
+                <a href="tel:01614484411">📞 01614-484411</a>
+              </div>
+              <div class="opt-a-branch-item">
+                <strong>South Banasree Branch</strong>
+                <span>House #34/36, Road 13/1, Khilgaon</span>
+                <a href="tel:+8801706205822">📞 +880 1706-205822</a>
+              </div>
+              <div class="opt-a-branch-item">
+                <strong>Rampura Branch</strong>
+                <span>House #7-8, 7th Floor, Banasree Main Rd</span>
+                <a href="tel:+8801705360925">📞 +880 1705-360925</a>
+              </div>
+            </div>
+
+            <!-- Col 4: Timings -->
+            <div class="opt-a-col">
+              <h5>Shift Hours</h5>
+              <div class="opt-a-timing-badge gents">
+                <div class="shift-title">
+                  <span>🏋️‍♂️ Gents Shift</span>
+                  <span style="font-size:0.75rem;">Daily</span>
+                </div>
+                <div class="shift-hours">
+                  7:30 AM — 1:30 PM<br>
+                  4:00 PM — 10:30 PM
+                </div>
+              </div>
+              <div class="opt-a-timing-badge ladies">
+                <div class="shift-title">
+                  <span>🏋️‍♀️ Ladies Shift</span>
+                  <span style="font-size:0.75rem;">Daily</span>
+                </div>
+                <div class="shift-hours">
+                  9:00 AM — 1:00 PM<br>
+                  4:00 PM — 10:00 PM
+                </div>
+              </div>
+              <div class="opt-a-schedule-days">Saturday — Thursday (Friday Closed)</div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Row -->
+          <div class="opt-a-bottom">
+            <div>&copy; 2026 Silver Gym Bangladesh. All rights reserved.</div>
+            <div class="opt-a-legal-links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms & Conditions</a>
+              <a href="#">Gym Rules & Dress Code</a>
+            </div>
+          </div>
+
+        </div>
+      </footer>
+    </section>
+
+    <!-- =========================================================================
+         OPTION B PREVIEW
+         ========================================================================= -->
+    <section id="optionB" class="preview-section">
+      <div class="option-meta">
+        <h3>Option B: Bold Typographic & Brand Statement Footer</h3>
+        <p>A striking, high-impact editorial footer inspired by global luxury athletic brands. Highlights an oversized call-to-action with strong typography and a subtle background brand watermark.</p>
+        <div class="option-highlights">
+          <span class="tag primary">✓ Oversized Action Headline</span>
+          <span class="tag">✓ Dual CTA Buttons (Join + WhatsApp)</span>
+          <span class="tag">✓ Giant Faint Watermark Logo</span>
+          <span class="tag">✓ Clean Minimalist Layout</span>
+        </div>
+      </div>
+
+      <!-- FOOTER OPTION B RENDERED -->
+      <footer class="section-footer">
+        <div class="opt-b-footer">
+          <div class="opt-b-watermark">SILVER GYM</div>
+
+          <!-- Hero Callout -->
+          <div class="opt-b-hero-callout">
+            <div>
+              <span class="subheading" style="color:var(--accent); font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase;">Stop Postponing</span>
+              <h2 style="margin-top:0.4rem;">READY TO TRANSFORM YOUR BODY? <span>JOIN US.</span></h2>
+            </div>
+            <div class="opt-b-actions">
+              <a href="index.html#membership" class="opt-b-btn-primary">Become a Member →</a>
+              <a href="https://wa.me/8801614484411" target="_blank" class="opt-b-btn-secondary">Chat on WhatsApp</a>
+            </div>
+          </div>
+
+          <!-- Grid -->
+          <div class="opt-b-grid">
+            <div class="opt-a-col">
+              <h3 class="logo-footer" style="margin-bottom: 1rem;">SILVER <span class="accent-text">GYM</span></h3>
+              <p style="color:#9c9a92; font-size:0.95rem; line-height:1.6;">The premier athletic fitness community in Dhaka. Build strength, endurance, and everyday confidence.</p>
+              <div style="margin-top: 1.5rem; color:#dcd9d0; font-size:0.92rem;">
+                <div>📍 Central Line: <strong>+880 1614-484411</strong></div>
+                <div style="margin-top:0.3rem;">✉️ Email: <strong>info@silvergym.com</strong></div>
+              </div>
+            </div>
+
+            <div class="opt-a-col">
+              <h5>Explore</h5>
+              <div class="opt-a-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#about">Our Story</a>
+                <a href="index.html#services">Training Programs</a>
+                <a href="index.html#membership">Plans & Admission</a>
+                <a href="branches.html">Branches (3)</a>
+                <a href="contact.html">Support</a>
+              </div>
+            </div>
+
+            <div class="opt-a-col">
+              <h5>Branches</h5>
+              <div class="opt-a-links">
+                <a href="branches.html">Rayarbag (Kadamtali)</a>
+                <a href="branches.html">South Banasree (Khilgaon)</a>
+                <a href="branches.html">Rampura (Main Road)</a>
+                <a href="branches.html" style="color:var(--accent); margin-top:0.5rem; font-weight:600;">View Full Branch Guide ↗</a>
+              </div>
+            </div>
+
+            <div class="opt-a-col">
+              <h5>Connect</h5>
+              <div class="opt-a-links">
+                <a href="https://facebook.com">Facebook Community</a>
+                <a href="https://instagram.com">Instagram Highlights</a>
+                <a href="https://youtube.com">YouTube Training</a>
+                <a href="https://wa.me/8801614484411">WhatsApp Direct</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom -->
+          <div class="opt-a-bottom" style="position:relative; z-index:2;">
+            <div>&copy; 2026 Silver Gym. Built for dedicated athletes.</div>
+            <div class="opt-a-legal-links">
+              <a href="#">Privacy</a>
+              <a href="#">Terms</a>
+              <a href="#">Safety & Etiquette</a>
+            </div>
+          </div>
+
+        </div>
+      </footer>
+    </section>
+
+    <!-- =========================================================================
+         OPTION C PREVIEW
+         ========================================================================= -->
+    <section id="optionC" class="preview-section">
+      <div class="option-meta">
+        <h3>Option C: Multi-Branch Location Cards Footer</h3>
+        <p>A hyper-local layout that highlights the 3 physical gym branches right at the footer level with dedicated location cards, one-click calling, and instant Google Maps links.</p>
+        <div class="option-highlights">
+          <span class="tag primary">✓ 3 Interactive Branch Cards</span>
+          <span class="tag">✓ One-Click "Call Now" & "Map"</span>
+          <span class="tag">✓ Real-time Open Status Pills</span>
+          <span class="tag">✓ Ideal for Local Searchers</span>
+        </div>
+      </div>
+
+      <!-- FOOTER OPTION C RENDERED -->
+      <footer class="section-footer">
+        <div class="opt-c-footer">
+
+          <div class="opt-c-cards-header">
+            <span class="subheading">Locations in Dhaka</span>
+            <h3>FIND YOUR NEAREST SILVER GYM</h3>
+          </div>
+
+          <!-- 3 Branch Cards -->
+          <div class="opt-c-cards-grid">
+            <!-- Rayarbag -->
+            <div class="opt-c-card">
+              <div>
+                <div class="opt-c-card-top">
+                  <h4>Rayarbag</h4>
+                  <span class="opt-c-status"><span class="dot"></span> Open Today</span>
+                </div>
+                <div class="opt-c-card-addr">
+                  Mannan Tower, Holding No: 3553, Madinabag, Kadamtali, Dhaka
+                </div>
+              </div>
+              <div class="opt-c-card-actions">
+                <a href="tel:01614484411" class="opt-c-btn-call">📞 01614-484411</a>
+                <a href="https://maps.google.com/?q=Mannan+Tower+Madinabag+Dhaka" target="_blank" class="opt-c-btn-map">Map ↗</a>
+              </div>
+            </div>
+
+            <!-- South Banasree -->
+            <div class="opt-c-card">
+              <div>
+                <div class="opt-c-card-top">
+                  <h4>South Banasree</h4>
+                  <span class="opt-c-status"><span class="dot"></span> Open Today</span>
+                </div>
+                <div class="opt-c-card-addr">
+                  House #34/36, Block #K, Road #13/1, Khilgaon, Dhaka-1219
+                </div>
+              </div>
+              <div class="opt-c-card-actions">
+                <a href="tel:+8801706205822" class="opt-c-btn-call">📞 01706-205822</a>
+                <a href="https://maps.google.com/?q=Dakhin+Banasree+Khilgaon+Dhaka" target="_blank" class="opt-c-btn-map">Map ↗</a>
+              </div>
+            </div>
+
+            <!-- Rampura -->
+            <div class="opt-c-card">
+              <div>
+                <div class="opt-c-card-top">
+                  <h4>Rampura</h4>
+                  <span class="opt-c-status"><span class="dot"></span> Open Today</span>
+                </div>
+                <div class="opt-c-card-addr">
+                  House #7-8, Block #A, 7th Floor, Main Road Banasree, Dhaka
+                </div>
+              </div>
+              <div class="opt-c-card-actions">
+                <a href="tel:+8801705360925" class="opt-c-btn-call">📞 01705-360925</a>
+                <a href="https://maps.google.com/?q=Banasree+Rampura+Dhaka" target="_blank" class="opt-c-btn-map">Map ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Secondary Strip -->
+          <div class="opt-c-links-strip">
+            <div style="display:flex; align-items:center; gap:2rem; flex-wrap:wrap;">
+              <span class="logo-footer" style="margin:0; font-size:1.3rem;">SILVER <span class="accent-text">GYM</span></span>
+              <div class="opt-a-legal-links">
+                <a href="index.html#membership">Membership</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="https://wa.me/8801614484411">WhatsApp Support</a>
+              </div>
+            </div>
+            <div style="color:#88867f; font-size:0.88rem;">
+              &copy; 2026 Silver Gym. All rights reserved.
+            </div>
+          </div>
+
+        </div>
+      </footer>
+    </section>
+
+    <!-- =========================================================================
+         CURRENT FOOTER (FOR COMPARISON)
+         ========================================================================= -->
+    <section id="current" class="preview-section">
+      <div class="option-meta">
+        <h3>Current Footer (Before Changes)</h3>
+        <p>This is what is currently live in <code>index.html</code>. It has duplicate service links, generic Google Map links, and lacks branch-specific hotlines and shift hours.</p>
+      </div>
+
+      <!-- CURRENT LIVE FOOTER -->
+      <footer class="section-footer section" style="padding:0;">
+        <div class="footer">
+          <div class="grid-footer" style="margin-bottom:4rem;">
+            <!-- Column 1: Brand + Contact Links -->
+            <div class="block-footer">
+              <h3 class="logo-footer">SILVER <span class="accent-text">GYM</span></h3>
+              <p class="paragraph-footer">Build your body. Build your confidence. Your fitness journey starts here.</p>
+              <div class="block-links">
+                <a href="https://maps.google.com/?q=Dhaka+Bangladesh" target="_blank" class="link-block dark">
+                  <svg class="icon-link-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                  <span class="text-link-block">show on map</span>
+                </a>
+                <a href="tel:01614484411" class="link-block dark">
+                  <svg class="icon-link-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+                  <span class="text-link-block">call us</span>
+                </a>
+                <a href="mailto:info@silvergym.com" class="link-block dark">
+                  <svg class="icon-link-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+                  <span class="text-link-block">info@silvergym.com</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div class="block-footer">
+              <h6 class="heading-footer">Navigate</h6>
+              <a href="#home" class="link-footer"><span class="footer-text">Home</span><span class="footer-text absolute">Home</span></a>
+              <a href="#about" class="link-footer"><span class="footer-text">About</span><span class="footer-text absolute">About</span></a>
+              <a href="#services" class="link-footer"><span class="footer-text">Services</span><span class="footer-text absolute">Services</span></a>
+              <a href="#membership" class="link-footer"><span class="footer-text">Membership</span><span class="footer-text absolute">Membership</span></a>
+              <a href="contact.html" class="link-footer"><span class="footer-text">Contact</span><span class="footer-text absolute">Contact</span></a>
+            </div>
+
+            <!-- Column 3: Social -->
+            <div class="block-footer">
+              <h6 class="heading-footer">Social</h6>
+              <a href="#" class="link-footer"><span class="footer-text">Facebook</span><span class="footer-text absolute">Facebook</span></a>
+              <a href="#" class="link-footer"><span class="footer-text">Instagram</span><span class="footer-text absolute">Instagram</span></a>
+              <a href="#" class="link-footer"><span class="footer-text">YouTube</span><span class="footer-text absolute">YouTube</span></a>
+              <a href="https://wa.me/8801614484411" target="_blank" class="link-footer"><span class="footer-text">WhatsApp</span><span class="footer-text absolute">WhatsApp</span></a>
+            </div>
+
+            <!-- Column 4: Services -->
+            <div class="block-footer">
+              <h6 class="heading-footer">Services</h6>
+              <a href="#services" class="link-footer"><span class="footer-text">Personal Training</span><span class="footer-text absolute">Personal Training</span></a>
+              <a href="#services" class="link-footer"><span class="footer-text">Group Classes</span><span class="footer-text absolute">Group Classes</span></a>
+              <a href="#services" class="link-footer"><span class="footer-text">Cardio Zone</span><span class="footer-text absolute">Cardio Zone</span></a>
+              <a href="#services" class="link-footer"><span class="footer-text">Strength Training</span><span class="footer-text absolute">Strength Training</span></a>
+            </div>
+          </div>
+
+          <!-- Bottom Bar -->
+          <div class="footer-bottom">
+            <a href="#" class="link-footer"><span class="footer-text">&copy; 2026 Silver Gym. All rights reserved.</span><span class="footer-text absolute">&copy; 2026 Silver Gym. All rights reserved.</span></a>
+            <a href="#" class="link-footer"><span class="footer-text">Made with ❤ for fitness</span><span class="footer-text absolute">Made with ❤ for fitness</span></a>
+          </div>
+        </div>
+      </footer>
+    </section>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.preview-section').forEach(sec => sec.classList.remove('active'));
+      
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+      
+      const targetSec = document.getElementById(tabId);
+      if (targetSec) targetSec.classList.add('active');
+    }
+  </script>
+</body>
+</html>

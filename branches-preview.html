@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Branches Layout Previews — Silver Gym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=2">
+  <style>
+    /* Controller Top Bar */
+    .preview-header {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: #111318;
+      border-bottom: 2px solid var(--accent);
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    }
+    .preview-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .preview-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    .preview-title h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.05rem;
+      color: #fff;
+      margin: 0;
+    }
+    .preview-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: #1e212b;
+      color: #cecbc1;
+      border: 1px solid #333846;
+      padding: 0.55rem 1rem;
+      border-radius: 6px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn:hover {
+      background: #2a2e3d;
+      color: #fff;
+    }
+    .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 2px 12px rgba(211, 60, 46, 0.4);
+    }
+    .preview-container {
+      padding: 2.5rem 1.5rem 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .preview-section {
+      display: none;
+    }
+    .preview-section.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .layout-meta-box {
+      background: #fff;
+      border: 1px solid #d9d7ce;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .layout-meta-box h3 {
+      font-family: 'Unbounded', sans-serif;
+      color: var(--heading);
+      margin-bottom: 0.4rem;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .layout-meta-box p {
+      color: var(--paragraphs);
+      margin-bottom: 0.75rem;
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+    .layout-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .ltag {
+      background: #eeebe3;
+      color: #333;
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .ltag.primary {
+      background: rgba(211, 60, 46, 0.12);
+      color: var(--accent);
+    }
+
+    /* =========================================================
+       LAYOUT 1: Interactive Tabbed Campus Hub (App-style)
+       ========================================================= */
+    .l1-hub-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .l1-hub-nav-btn {
+      background: #111318;
+      border: 2px solid #232733;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      color: var(--light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .l1-hub-nav-btn:hover {
+      border-color: #444c5f;
+      transform: translateY(-2px);
+    }
+    .l1-hub-nav-btn.active {
+      border-color: var(--accent);
+      background: #171a23;
+      box-shadow: 0 8px 24px rgba(211, 60, 46, 0.25);
+    }
+    .l1-hub-nav-btn h4 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.05rem;
+      color: #fff;
+      margin-bottom: 0.25rem;
+    }
+    .l1-hub-nav-btn span {
+      font-size: 0.85rem;
+      color: var(--quill-grey);
+      opacity: 0.8;
+    }
+    .l1-hub-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #4ade80;
+      background: rgba(74, 222, 128, 0.12);
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+    }
+    .l1-branch-panel {
+      display: none;
+      background: #111318;
+      border: 1px solid #232733;
+      border-radius: 16px;
+      overflow: hidden;
+      color: var(--light);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+    }
+    .l1-branch-panel.active {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      animation: fadeIn 0.3s ease;
+    }
+    .l1-panel-info {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .l1-panel-header {
+      margin-bottom: 2rem;
+    }
+    .l1-panel-header h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.8rem;
+      color: #fff;
+      margin: 0.4rem 0 0.8rem;
+    }
+    .l1-panel-addr {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      color: #dcd9d0;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .l1-panel-addr svg {
+      width: 22px;
+      height: 22px;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+    .l1-timings-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      background: #191c26;
+      border: 1px solid #2a2e3d;
+      border-radius: 10px;
+      padding: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .l1-timing-block .shift-name {
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+    .l1-timing-block.gents .shift-name { color: #64b5f6; }
+    .l1-timing-block.ladies .shift-name { color: #f48fb1; }
+    .l1-timing-block .shift-time {
+      color: #dcd9d0;
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+    .l1-facilities-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .l1-facility-pill {
+      background: #1d212d;
+      border: 1px solid #2c3242;
+      color: #cecbc1;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .l1-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .l1-btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.85rem 1.6rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s ease;
+      text-decoration: none;
+    }
+    .l1-btn-primary:hover {
+      background: var(--accent-darker);
+      color: #fff;
+    }
+    .l1-btn-outline {
+      background: #202430;
+      color: #fff;
+      border: 1px solid #363c4e;
+      padding: 0.85rem 1.4rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .l1-btn-outline:hover {
+      background: #2b3142;
+      color: #fff;
+    }
+    .l1-panel-map {
+      height: 100%;
+      min-height: 520px;
+    }
+    .l1-panel-map iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* =========================================================
+       LAYOUT 2: 3-Column Executive Dossier Cards + Comparison
+       ========================================================= */
+    .l2-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      margin-bottom: 3.5rem;
+    }
+    .l2-card {
+      background: #111318;
+      border: 1px solid #232733;
+      border-radius: 14px;
+      overflow: hidden;
+      color: var(--light);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    .l2-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.3);
+    }
+    .l2-card-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .l2-card-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(17,19,24,0.95) 100%);
+    }
+    .l2-card-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      z-index: 2;
+    }
+    .l2-card-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .l2-card-body h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.25rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .l2-card-body p {
+      color: #a8a69e;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      min-height: 2.8em;
+    }
+    .l2-timing-mini {
+      background: #191c25;
+      border: 1px solid #282c38;
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.88rem;
+    }
+    .l2-timing-mini div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.25rem;
+    }
+    .l2-timing-mini div:last-child { margin-bottom: 0; }
+    .l2-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .l2-btn-call {
+      flex: 1;
+      background: var(--accent);
+      color: #fff;
+      text-align: center;
+      padding: 0.7rem 0.8rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .l2-btn-call:hover { background: var(--accent-darker); color: #fff; }
+    .l2-btn-gallery {
+      background: #232733;
+      color: #fff;
+      padding: 0.7rem 0.9rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .l2-btn-gallery:hover { background: #333849; color: #fff; }
+
+    /* Comparison Table in Layout 2 */
+    .l2-comp-table {
+      background: #111318;
+      border: 1px solid #232733;
+      border-radius: 14px;
+      padding: 2rem;
+      color: var(--light);
+      margin-top: 2rem;
+    }
+    .l2-comp-table h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .l2-table-wrapper {
+      overflow-x: auto;
+    }
+    .l2-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+    .l2-table th, .l2-table td {
+      padding: 0.9rem 1.2rem;
+      text-align: left;
+      border-bottom: 1px solid #232733;
+    }
+    .l2-table th {
+      color: var(--accent);
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .l2-table tr:hover td {
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* =========================================================
+       LAYOUT 3: Editorial Story & Interactive Map Preview
+       ========================================================= */
+    .l3-container {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+    .l3-branch-row {
+      background: #111318;
+      border: 1px solid #232733;
+      border-radius: 16px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .l3-branch-row.reverse {
+      grid-template-columns: 1fr 1fr;
+    }
+    .l3-row-content {
+      padding: 3rem;
+      color: var(--light);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .l3-row-media {
+      position: relative;
+      min-height: 420px;
+      background-size: cover;
+      background-position: center;
+    }
+    .l3-row-media-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(17,19,24,0.7) 100%);
+    }
+    .l3-map-trigger-btn {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: rgba(8,9,13,0.85);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.6rem 1.1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 3;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .l3-map-trigger-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+      .l1-hub-nav, .l2-grid { grid-template-columns: 1fr; }
+      .l1-branch-panel.active { grid-template-columns: 1fr; }
+      .l3-branch-row { grid-template-columns: 1fr; }
+      .l1-panel-info, .l3-row-content { padding: 2rem 1.5rem; }
+      .l1-panel-map { min-height: 350px; }
+      .l3-row-media { min-height: 300px; }
+    }
+  </style>
+</head>
+<body style="background-color: var(--background); margin: 0; padding: 0;">
+
+  <!-- Controller Sticky Top Bar -->
+  <header class="preview-header">
+    <div class="preview-title">
+      <span class="preview-badge">Live Showcase</span>
+      <h2>Silver Gym — Branches Page Layout Concepts</h2>
+    </div>
+    <div class="preview-tabs">
+      <button class="tab-btn active" onclick="switchBranchLayout('layout1')">Layout 1: Interactive Tabbed Hub ⭐</button>
+      <button class="tab-btn" onclick="switchBranchLayout('layout2')">Layout 2: Executive Dossier Cards & Comparison</button>
+      <button class="tab-btn" onclick="switchBranchLayout('layout3')">Layout 3: Editorial Story & Media Split</button>
+      <button class="tab-btn" onclick="switchBranchLayout('layoutCurrent')">Current Layout (Before)</button>
+    </div>
+  </header>
+
+  <main class="preview-container">
+
+    <!-- =========================================================================
+         LAYOUT 1 PREVIEW: Interactive Tabbed Campus Hub (Recommended)
+         ========================================================================= -->
+    <section id="layout1" class="preview-section active">
+      <div class="layout-meta-box">
+        <h3>Layout 1: Interactive Tabbed Campus Hub <span style="font-size:0.75rem; background:var(--accent); color:#fff; padding:0.2rem 0.5rem; border-radius:4px;">RECOMMENDED</span></h3>
+        <p>A sleek, modern app-style experience. Instead of scrolling through 3 endless vertical blocks, members can click between Rayarbag, South Banasree, and Rampura at the top. The active view displays complete facilities, shifts, direct hotlines, and an embedded interactive Google Map.</p>
+        <div class="layout-tags">
+          <span class="ltag primary">✓ Zero Long-Scrolling Friction</span>
+          <span class="ltag">✓ Instant Tab Switching</span>
+          <span class="ltag">✓ Full Facilities & Gender Shifts</span>
+          <span class="ltag">✓ Embedded Interactive Google Map</span>
+          <span class="ltag">✓ Direct Call & WhatsApp Buttons</span>
+        </div>
+      </div>
+
+      <!-- Live Layout 1 Interface -->
+      <div class="l1-hub-wrapper">
+
+        <!-- Top Branch Switcher Tabs -->
+        <div class="l1-hub-nav">
+          <button class="l1-hub-nav-btn active" onclick="switchHubBranch('rayarbag')">
+            <div>
+              <h4>Rayarbag Branch</h4>
+              <span>Kadamtali • Mannan Tower</span>
+            </div>
+            <span class="l1-hub-badge">● Open Today</span>
+          </button>
+
+          <button class="l1-hub-nav-btn" onclick="switchHubBranch('south-banasree')">
+            <div>
+              <h4>South Banasree</h4>
+              <span>Khilgaon • Road 13/1</span>
+            </div>
+            <span class="l1-hub-badge">● Open Today</span>
+          </button>
+
+          <button class="l1-hub-nav-btn" onclick="switchHubBranch('rampura')">
+            <div>
+              <h4>Rampura Branch</h4>
+              <span>Banasree • 7th Floor</span>
+            </div>
+            <span class="l1-hub-badge">● Open Today</span>
+          </button>
+        </div>
+
+        <!-- PANEL 1: RAYARBAG -->
+        <div class="l1-branch-panel active" id="l1-panel-rayarbag">
+          <div class="l1-panel-info">
+            <div>
+              <div class="l1-panel-header">
+                <span style="color:var(--accent); font-weight:700; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.1em;">Branch 01 • Kadamtali, Dhaka</span>
+                <h2>SILVER GYM — RAYARBAG</h2>
+                <div class="l1-panel-addr">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                  <div>Mannan Tower, Holding No: 3553, Madinabag, Kadamtali, Dhaka</div>
+                </div>
+              </div>
+
+              <!-- Timings Strip -->
+              <div class="l1-timings-strip">
+                <div class="l1-timing-block gents">
+                  <div class="shift-name">🏋️‍♂️ Gents Shift</div>
+                  <div class="shift-time">7:30 AM — 1:30 PM<br>4:00 PM — 10:30 PM</div>
+                </div>
+                <div class="l1-timing-block ladies">
+                  <div class="shift-name">🏋️‍♀️ Ladies Shift</div>
+                  <div class="shift-time">9:00 AM — 1:00 PM<br>4:00 PM — 10:00 PM</div>
+                </div>
+              </div>
+
+              <!-- Facilities Pills -->
+              <div class="l1-facilities-pills">
+                <span class="l1-facility-pill">✓ Modern Cardio Zone</span>
+                <span class="l1-facility-pill">✓ Heavy Strength Area</span>
+                <span class="l1-facility-pill">✓ Separate Men & Women Spaces</span>
+                <span class="l1-facility-pill">✓ Certified Trainers</span>
+                <span class="l1-facility-pill">✓ Locker & Changing Rooms</span>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="l1-actions">
+              <a href="tel:01614484411" class="l1-btn-primary">📞 Call: 01614-484411</a>
+              <a href="https://wa.me/8801614484411" target="_blank" class="l1-btn-outline">💬 WhatsApp</a>
+              <a href="gallery.html?branch=rayarbag" class="l1-btn-outline">🖼️ Rayarbag Photos (6)</a>
+              <a href="https://maps.google.com/?q=Mannan+Tower+Holding+No+3553+Madinabag+Kadamtali+Dhaka" target="_blank" class="l1-btn-outline">Map Directions ↗</a>
+            </div>
+          </div>
+          <div class="l1-panel-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.5!2d90.4!3d23.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQyJzAwLjAiTiA5MMKwMjQnMDAuMCJF!5e0!3m2!1sen!2sbd!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+
+        <!-- PANEL 2: SOUTH BANASREE -->
+        <div class="l1-branch-panel" id="l1-panel-south-banasree">
+          <div class="l1-panel-info">
+            <div>
+              <div class="l1-panel-header">
+                <span style="color:var(--accent); font-weight:700; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.1em;">Branch 02 • Khilgaon, Dhaka</span>
+                <h2>SILVER GYM — SOUTH BANASREE</h2>
+                <div class="l1-panel-addr">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                  <div>House #34/36, Block #K, Road #13/1, Dakhin Banasree Project, Khilgaon, Dhaka-1219</div>
+                </div>
+              </div>
+
+              <div class="l1-timings-strip">
+                <div class="l1-timing-block gents">
+                  <div class="shift-name">🏋️‍♂️ Gents Shift</div>
+                  <div class="shift-time">7:30 AM — 1:30 PM<br>4:00 PM — 10:30 PM</div>
+                </div>
+                <div class="l1-timing-block ladies">
+                  <div class="shift-name">🏋️‍♀️ Ladies Shift</div>
+                  <div class="shift-time">9:00 AM — 1:00 PM<br>4:00 PM — 10:00 PM</div>
+                </div>
+              </div>
+
+              <div class="l1-facilities-pills">
+                <span class="l1-facility-pill">✓ Dedicated Ladies Floor</span>
+                <span class="l1-facility-pill">✓ Full Dumbbell Rack Array</span>
+                <span class="l1-facility-pill">✓ High-End Treadmills</span>
+                <span class="l1-facility-pill">✓ Personal Weight Loss Guidance</span>
+                <span class="l1-facility-pill">✓ Sanitized Locker Rooms</span>
+              </div>
+            </div>
+
+            <div class="l1-actions">
+              <a href="tel:+8801706205822" class="l1-btn-primary">📞 Call: 01706-205822</a>
+              <a href="https://wa.me/8801706205822" target="_blank" class="l1-btn-outline">💬 WhatsApp</a>
+              <a href="gallery.html?branch=south-banasree" class="l1-btn-outline">🖼️ Banasree Photos (6)</a>
+              <a href="https://maps.google.com/?q=House+34+36+Block+K+Road+13+1+Dakhin+Banasree+Khilgaon+Dhaka+1219" target="_blank" class="l1-btn-outline">Map Directions ↗</a>
+            </div>
+          </div>
+          <div class="l1-panel-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.5!2d90.42!3d23.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQ1JzAwLjAiTiA5MMKwMjUnMTIuMCJF!5e0!3m2!1sen!2sbd!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+
+        <!-- PANEL 3: RAMPURA -->
+        <div class="l1-branch-panel" id="l1-panel-rampura">
+          <div class="l1-panel-info">
+            <div>
+              <div class="l1-panel-header">
+                <span style="color:var(--accent); font-weight:700; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.1em;">Branch 03 • Main Road Banasree</span>
+                <h2>SILVER GYM — RAMPURA</h2>
+                <div class="l1-panel-addr">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                  <div>House #7-8, Block #A, 7th Floor, Main Road, Banasree Rampura, Dhaka-1219</div>
+                </div>
+              </div>
+
+              <div class="l1-timings-strip">
+                <div class="l1-timing-block gents">
+                  <div class="shift-name">🏋️‍♂️ Gents Shift</div>
+                  <div class="shift-time">7:30 AM — 1:30 PM<br>4:00 PM — 10:30 PM</div>
+                </div>
+                <div class="l1-timing-block ladies">
+                  <div class="shift-name">🏋️‍♀️ Ladies Shift</div>
+                  <div class="shift-time">9:00 AM — 1:00 PM<br>4:00 PM — 10:00 PM</div>
+                </div>
+              </div>
+
+              <div class="l1-facilities-pills">
+                <span class="l1-facility-pill">✓ 7th Floor Skyline Views</span>
+                <span class="l1-facility-pill">✓ Powerlifting & Squat Racks</span>
+                <span class="l1-facility-pill">✓ High-Ventilation Cardio Deck</span>
+                <span class="l1-facility-pill">✓ Muscle Building Mentors</span>
+                <span class="l1-facility-pill">✓ Air-Conditioned Spaces</span>
+              </div>
+            </div>
+
+            <div class="l1-actions">
+              <a href="tel:+8801705360925" class="l1-btn-primary">📞 Call: 01705-360925</a>
+              <a href="https://wa.me/8801705360925" target="_blank" class="l1-btn-outline">💬 WhatsApp</a>
+              <a href="gallery.html?branch=rampura" class="l1-btn-outline">🖼️ Rampura Photos (6)</a>
+              <a href="https://maps.google.com/?q=House+7+8+Block+A+Main+Road+Banasree+Rampura+Dhaka+1219" target="_blank" class="l1-btn-outline">Map Directions ↗</a>
+            </div>
+          </div>
+          <div class="l1-panel-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.5!2d90.43!3d23.76!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQ1JzM2LjAiTiA5MMKwMjUnNDguMCJF!5e0!3m2!1sen!2sbd!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         LAYOUT 2 PREVIEW: Executive Dossier Cards & Comparison Matrix
+         ========================================================================= -->
+    <section id="layout2" class="preview-section">
+      <div class="layout-meta-box">
+        <h3>Layout 2: Executive Dossier Cards & Comparison Table</h3>
+        <p>Inspired by international luxury athletic clubs (Equinox / Barry's). Features 3 visual cards with photo banners and quick-dial buttons, followed by an amenities comparison matrix.</p>
+        <div class="layout-tags">
+          <span class="ltag primary">✓ 3 Side-by-Side Visual Cards</span>
+          <span class="ltag">✓ Branch Amenities Comparison Table</span>
+          <span class="ltag">✓ Clear Shift Breakdown</span>
+          <span class="ltag">✓ Ideal for Fast Decision Makers</span>
+        </div>
+      </div>
+
+      <!-- 3 Dossier Cards -->
+      <div class="l2-grid">
+        <!-- Rayarbag Card -->
+        <div class="l2-card">
+          <div class="l2-card-image" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80');">
+            <div class="l2-card-image-overlay"></div>
+            <span class="l2-card-badge">Branch 01</span>
+          </div>
+          <div class="l2-card-body">
+            <div>
+              <h3>Rayarbag</h3>
+              <p>Mannan Tower, Holding No: 3553, Madinabag, Kadamtali, Dhaka</p>
+              <div class="l2-timing-mini">
+                <div><span>Gents:</span> <strong>7:30 AM — 10:30 PM</strong></div>
+                <div><span>Ladies:</span> <strong>9:00 AM — 10:00 PM</strong></div>
+              </div>
+            </div>
+            <div class="l2-actions">
+              <a href="tel:01614484411" class="l2-btn-call">📞 Call Branch</a>
+              <a href="gallery.html?branch=rayarbag" class="l2-btn-gallery">Photos ↗</a>
+              <a href="https://maps.google.com/?q=Mannan+Tower+Kadamtali+Dhaka" target="_blank" class="l2-btn-gallery">Map</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- South Banasree Card -->
+        <div class="l2-card">
+          <div class="l2-card-image" style="background-image: url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=800&q=80');">
+            <div class="l2-card-image-overlay"></div>
+            <span class="l2-card-badge">Branch 02</span>
+          </div>
+          <div class="l2-card-body">
+            <div>
+              <h3>South Banasree</h3>
+              <p>House #34/36, Block #K, Road #13/1, Khilgaon, Dhaka-1219</p>
+              <div class="l2-timing-mini">
+                <div><span>Gents:</span> <strong>7:30 AM — 10:30 PM</strong></div>
+                <div><span>Ladies:</span> <strong>9:00 AM — 10:00 PM</strong></div>
+              </div>
+            </div>
+            <div class="l2-actions">
+              <a href="tel:+8801706205822" class="l2-btn-call">📞 Call Branch</a>
+              <a href="gallery.html?branch=south-banasree" class="l2-btn-gallery">Photos ↗</a>
+              <a href="https://maps.google.com/?q=Khilgaon+Dhaka" target="_blank" class="l2-btn-gallery">Map</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rampura Card -->
+        <div class="l2-card">
+          <div class="l2-card-image" style="background-image: url('https://images.unsplash.com/photo-1596357395217-80de13130e92?w=800&q=80');">
+            <div class="l2-card-image-overlay"></div>
+            <span class="l2-card-badge">Branch 03</span>
+          </div>
+          <div class="l2-card-body">
+            <div>
+              <h3>Rampura</h3>
+              <p>House #7-8, Block #A, 7th Floor, Main Road Banasree, Dhaka</p>
+              <div class="l2-timing-mini">
+                <div><span>Gents:</span> <strong>7:30 AM — 10:30 PM</strong></div>
+                <div><span>Ladies:</span> <strong>9:00 AM — 10:00 PM</strong></div>
+              </div>
+            </div>
+            <div class="l2-actions">
+              <a href="tel:+8801705360925" class="l2-btn-call">📞 Call Branch</a>
+              <a href="gallery.html?branch=rampura" class="l2-btn-gallery">Photos ↗</a>
+              <a href="https://maps.google.com/?q=Rampura+Dhaka" target="_blank" class="l2-btn-gallery">Map</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison Matrix Table -->
+      <div class="l2-comp-table">
+        <h3>BRANCH AMENITIES & HIGHLIGHTS COMPARISON</h3>
+        <div class="l2-table-wrapper">
+          <table class="l2-table">
+            <thead>
+              <tr>
+                <th>Feature / Facility</th>
+                <th>Rayarbag</th>
+                <th>South Banasree</th>
+                <th>Rampura</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Location Zone</strong></td>
+                <td>Kadamtali / Madinabag</td>
+                <td>Khilgaon / Dakhin Banasree</td>
+                <td>Main Road / Banasree Rampura</td>
+              </tr>
+              <tr>
+                <td><strong>Floor & Ambience</strong></td>
+                <td>Spacious Tower Floor</td>
+                <td>Dedicated Multi-Room Space</td>
+                <td>7th Floor Skyline View</td>
+              </tr>
+              <tr>
+                <td><strong>Separate Shifts (Gents & Ladies)</strong></td>
+                <td><span style="color:#4ade80;">✓ Yes (Daily)</span></td>
+                <td><span style="color:#4ade80;">✓ Yes (Daily)</span></td>
+                <td><span style="color:#4ade80;">✓ Yes (Daily)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Cardio & Endurance Area</strong></td>
+                <td>Full Cardio Line</td>
+                <td>Advanced Treadmills & Cycles</td>
+                <td>High-Ventilation Cardio Deck</td>
+              </tr>
+              <tr>
+                <td><strong>Heavy Free Weights & Power Racks</strong></td>
+                <td><span style="color:#4ade80;">✓ Available</span></td>
+                <td><span style="color:#4ade80;">✓ Available</span></td>
+                <td><span style="color:#4ade80;">✓ Heavy Powerlifting Zone</span></td>
+              </tr>
+              <tr>
+                <td><strong>Air Conditioning & Lockers</strong></td>
+                <td><span style="color:#4ade80;">✓ Yes</span></td>
+                <td><span style="color:#4ade80;">✓ Yes</span></td>
+                <td><span style="color:#4ade80;">✓ Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Direct Contact Hotline</strong></td>
+                <td><a href="tel:01614484411" style="color:var(--accent);">01614-484411</a></td>
+                <td><a href="tel:+8801706205822" style="color:var(--accent);">+880 1706-205822</a></td>
+                <td><a href="tel:+8801705360925" style="color:var(--accent);">+880 1705-360925</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         LAYOUT 3 PREVIEW: Editorial Story & Media Split
+         ========================================================================= -->
+    <section id="layout3" class="preview-section">
+      <div class="layout-meta-box">
+        <h3>Layout 3: Editorial Story & Media Split Rows</h3>
+        <p>A magazine-style storytelling layout with alternating rows. Every branch gets a large cinematic photo section with an embedded map trigger button alongside full schedules and facility highlights.</p>
+        <div class="layout-tags">
+          <span class="ltag primary">✓ Alternating Media & Info Rows</span>
+          <span class="ltag">✓ Cinematic Photo Focal Point</span>
+          <span class="ltag">✓ Rich Neighborhood Descriptions</span>
+          <span class="ltag">✓ Full Shift Schedules</span>
+        </div>
+      </div>
+
+      <div class="l3-container">
+        <!-- Row 1: Rayarbag -->
+        <div class="l3-branch-row">
+          <div class="l3-row-content">
+            <div>
+              <span style="color:var(--accent); font-weight:700; font-size:0.82rem; text-transform:uppercase;">Flagship 01</span>
+              <h2 style="font-family:'Unbounded',sans-serif; font-size:1.6rem; color:#fff; margin:0.4rem 0 0.8rem;">Rayarbag Facility</h2>
+              <p style="color:#dcd9d0; font-size:0.95rem; line-height:1.6; margin-bottom:1.5rem;">
+                Located at Mannan Tower in Madinabag, Rayarbag is tailored for serious strength training and athletic conditioning. Equipped with heavy dumbbells, specialized pin-loaded machinery, and dedicated training zones.
+              </p>
+              <div style="margin-bottom:1.5rem; color:#a8a69e; font-size:0.9rem;">
+                📍 <strong>Mannan Tower, Kadamtali, Dhaka</strong><br>
+                📞 <a href="tel:01614484411" style="color:var(--accent); font-weight:600;">01614-484411</a>
+              </div>
+            </div>
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+              <a href="tel:01614484411" class="l1-btn-primary">Call Rayarbag</a>
+              <a href="gallery.html?branch=rayarbag" class="l1-btn-outline">View 6 Photos →</a>
+            </div>
+          </div>
+          <div class="l3-row-media" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1000&q=80');">
+            <div class="l3-row-media-overlay"></div>
+            <a href="https://maps.google.com/?q=Mannan+Tower+Kadamtali+Dhaka" target="_blank" class="l3-map-trigger-btn">Open Map Pin ↗</a>
+          </div>
+        </div>
+
+        <!-- Row 2: South Banasree -->
+        <div class="l3-branch-row reverse">
+          <div class="l3-row-media" style="background-image: url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=1000&q=80');">
+            <div class="l3-row-media-overlay"></div>
+            <a href="https://maps.google.com/?q=Khilgaon+Dhaka" target="_blank" class="l3-map-trigger-btn">Open Map Pin ↗</a>
+          </div>
+          <div class="l3-row-content">
+            <div>
+              <span style="color:var(--accent); font-weight:700; font-size:0.82rem; text-transform:uppercase;">Campus 02</span>
+              <h2 style="font-family:'Unbounded',sans-serif; font-size:1.6rem; color:#fff; margin:0.4rem 0 0.8rem;">South Banasree Facility</h2>
+              <p style="color:#dcd9d0; font-size:0.95rem; line-height:1.6; margin-bottom:1.5rem;">
+                Centrally located in the Dakhin Banasree Project at Khilgaon. Features dedicated separate workout floors for male and female athletes, along with a full cardio and endurance zone.
+              </p>
+              <div style="margin-bottom:1.5rem; color:#a8a69e; font-size:0.9rem;">
+                📍 <strong>House #34/36, Road 13/1, Khilgaon, Dhaka</strong><br>
+                📞 <a href="tel:+8801706205822" style="color:var(--accent); font-weight:600;">+880 1706-205822</a>
+              </div>
+            </div>
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+              <a href="tel:+8801706205822" class="l1-btn-primary">Call South Banasree</a>
+              <a href="gallery.html?branch=south-banasree" class="l1-btn-outline">View 6 Photos →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 3: Rampura -->
+        <div class="l3-branch-row">
+          <div class="l3-row-content">
+            <div>
+              <span style="color:var(--accent); font-weight:700; font-size:0.82rem; text-transform:uppercase;">Skyline 03</span>
+              <h2 style="font-family:'Unbounded',sans-serif; font-size:1.6rem; color:#fff; margin:0.4rem 0 0.8rem;">Rampura Main Road Facility</h2>
+              <p style="color:#dcd9d0; font-size:0.95rem; line-height:1.6; margin-bottom:1.5rem;">
+                Perched on the 7th floor of House #7-8 on Banasree Main Road. Features high-ventilation panoramic views of Dhaka, high-durability powerlifting platforms, and squat racks.
+              </p>
+              <div style="margin-bottom:1.5rem; color:#a8a69e; font-size:0.9rem;">
+                📍 <strong>House #7-8, 7th Floor, Main Road Banasree, Rampura</strong><br>
+                📞 <a href="tel:+8801705360925" style="color:var(--accent); font-weight:600;">+880 1705-360925</a>
+              </div>
+            </div>
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+              <a href="tel:+8801705360925" class="l1-btn-primary">Call Rampura</a>
+              <a href="gallery.html?branch=rampura" class="l1-btn-outline">View 6 Photos →</a>
+            </div>
+          </div>
+          <div class="l3-row-media" style="background-image: url('https://images.unsplash.com/photo-1596357395217-80de13130e92?w=1000&q=80');">
+            <div class="l3-row-media-overlay"></div>
+            <a href="https://maps.google.com/?q=Banasree+Rampura+Dhaka" target="_blank" class="l3-map-trigger-btn">Open Map Pin ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         CURRENT LAYOUT: Before Changes
+         ========================================================================= -->
+    <section id="layoutCurrent" class="preview-section">
+      <div class="layout-meta-box">
+        <h3>Current Layout (Existing in branches.html)</h3>
+        <p>This is what is currently active on <code>branches.html</code>. It displays a quick jump card directory at the top followed by 3 vertical full-width sections for Rayarbag, South Banasree, and Rampura with maps.</p>
+        <div class="layout-tags">
+          <span class="ltag">3 Long Vertical Sections</span>
+          <span class="ltag">Separate Google Maps Iframes</span>
+        </div>
+      </div>
+
+      <!-- Quick Directory -->
+      <div class="branch-quick-grid" style="margin-bottom:3rem;">
+        <a href="#rayarbag" class="branch-quick-card">
+          <div class="branch-quick-badge">Branch 01</div>
+          <h3>Rayarbag</h3>
+          <p>Mannan Tower, Holding No: 3553, Madinabag, Kadamtali, Dhaka</p>
+          <span class="branch-quick-cta">View Details & Map ↓</span>
+        </a>
+        <a href="#south-banasree" class="branch-quick-card">
+          <div class="branch-quick-badge">Branch 02</div>
+          <h3>South Banasree</h3>
+          <p>House #34/36, Block #K, Road #13/1, Khilgaon, Dhaka-1219</p>
+          <span class="branch-quick-cta">View Details & Map ↓</span>
+        </a>
+        <a href="#rampura" class="branch-quick-card">
+          <div class="branch-quick-badge">Branch 03</div>
+          <h3>Rampura</h3>
+          <p>House #7-8, Block #A, 7th Floor, Main Road Banasree, Dhaka</p>
+          <span class="branch-quick-cta">View Details & Map ↓</span>
+        </a>
+      </div>
+
+      <!-- Current Rayarbag snippet -->
+      <div class="branch-detail-block" style="background:#111318; border-radius:12px; padding:2rem; color:#fff; margin-bottom:2rem;">
+        <span class="branch-status open" style="display:inline-block; margin-bottom:0.8rem; background:rgba(74,222,128,0.1); color:#4ade80; padding:0.25rem 0.6rem; border-radius:20px; font-size:0.8rem; font-weight:700;">Opened</span>
+        <h2>SILVER GYM — RAYARBAG</h2>
+        <p style="color:#a8a69e; margin-top:0.5rem;">Mannan Tower, Madinabag, Kadamtali • 📞 01614-484411</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function switchBranchLayout(layoutId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.preview-section').forEach(sec => sec.classList.remove('active'));
+
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(layoutId));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const targetSec = document.getElementById(layoutId);
+      if (targetSec) targetSec.classList.add('active');
+    }
+
+    function switchHubBranch(branchKey) {
+      document.querySelectorAll('.l1-hub-nav-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.l1-branch-panel').forEach(p => p.classList.remove('active'));
+
+      const activeBtn = Array.from(document.querySelectorAll('.l1-hub-nav-btn')).find(b => b.getAttribute('onclick').includes(branchKey));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const targetPanel = document.getElementById('l1-panel-' + branchKey);
+      if (targetPanel) targetPanel.classList.add('active');
+    }
+  </script>
+</body>
+</html>
